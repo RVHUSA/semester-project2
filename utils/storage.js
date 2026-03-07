@@ -28,7 +28,7 @@ export function getUsername() {
   return user ? user.name : null;
 }
 
-// Remove a key from localStorage
+// Remove key from localStorage
 export function clearKey(key) {
   localStorage.removeItem(key);
 }
