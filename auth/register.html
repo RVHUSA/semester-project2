@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="This is Vintage Vaults register page" />
+    <title>Vintage Vault | Register</title>
+
+    <!-- Google Fonts - Source: https://fonts.google.com/specimen/Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../styles/css/styles.css" />
+  </head>
+
+  <body>
+    <div class="auth-form">
+      <a href="/index.html">
+        <img
+          src="/assets/images/vv-logo.png"
+          alt="Vintage Vault logo"
+          class="logo"
+        />
+      </a>
+      <h2>Register to add your own listings and bid on others</h2>
+      <form id="register-form">
+        <input
+          type="text"
+          name="username"
+          class=""
+          placeholder="Username"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          class=""
+          placeholder="E-mail (@stud.noroff.no required)"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          class=""
+          minlength="8"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Register</button>
+      </form>
+      <p id="register-error" class="error-message"></p>
+      <p>Do you already have an account? <a href="login.html">Login here</a></p>
+    </div>
+
+    <div id="spinner" class="spinner-overlay hidden">
+      <div class="spinner"></div>
+    </div>
+    <script type="module" src="register.js"></script>
+  </body>
+</html>
