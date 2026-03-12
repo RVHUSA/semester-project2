@@ -1,0 +1,15 @@
+@use "variables" as *;
+@use "mixins" as *;
+@use "sass:color";
+
+.btn-regular {
+  background: black;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  @include rounded;
+  @include button-base;
+
+  &:hover {
+    background: #333;
+  }
+}

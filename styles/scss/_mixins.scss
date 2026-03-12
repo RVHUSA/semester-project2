@@ -1,0 +1,18 @@
+@use "variables" as *;
+
+/* Shadow */
+@mixin card-shadow {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Rounded corners */
+@mixin rounded($radius: $border-radius) {
+  border-radius: $radius;
+}
+
+/* Button base */
+@mixin button-base {
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}

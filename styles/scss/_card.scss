@@ -1,0 +1,16 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+/* Base */
+.card-custom {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  @include card-shadow;
+  @include rounded;
+}
+
+/* Login and register */
+.auth-form {
+  @extend .card-custom;
+}

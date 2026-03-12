@@ -1,1 +1,15 @@
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@use "variables" as *;
+
+@use "../../node_modules/bootstrap/scss/bootstrap" with (
+  $primary: $primary,
+  $font-family-base: $font-family-base,
+  $border-radius: $border-radius,
+  $body-bg: $background,
+  $body-color: $text
+);
+
+// Custom styles
+@use "layout";
+@use "buttons";
+@use "card";
+@use "mixins";

@@ -1,0 +1,43 @@
+@use "variables" as *;
+@use "mixins" as *;
+@use "sass:color";
+
+/* Body and main */
+body {
+  font-family: $font-family-base;
+  background: $background;
+  color: $text;
+}
+
+main.container {
+  min-height: 100vh;
+}
+
+/* Form */
+.auth-logo {
+  width: clamp(180px, 40vw, 260px);
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.form-control {
+  background: white;
+}
+
+.auth-color a {
+  color: $secondary;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.auth-color a:hover {
+  text-decoration: underline;
+}
+
+.register-text {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2rem;
+}
