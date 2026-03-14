@@ -1,18 +1,6 @@
 @use "variables" as *;
-@use "mixins" as *;
 
-/* Body and main */
-body {
-  font-family: $font-family-base;
-  background: $background;
-  color: $text;
-}
-
-main.container {
-  min-height: 100vh;
-}
-
-/* Form */
+/* Login and register form */
 .auth-logo {
   width: clamp(180px, 40vw, 260px);
   height: auto;
