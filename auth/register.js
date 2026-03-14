@@ -1,5 +1,5 @@
 // Connects register-form and sends data to registerUser-function
-import { registerUser } from "./auth.js";
+import { registerUser } from "../api/auth.js";
 
 document.getElementById("register-form").addEventListener("submit", (event) => {
   event.preventDefault();

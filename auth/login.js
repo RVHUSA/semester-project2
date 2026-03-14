@@ -1,5 +1,5 @@
 // Connects login-form and sends data to loginUser-function
-import { loginUser } from "./auth.js";
+import { loginUser } from "../api/auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login-form");

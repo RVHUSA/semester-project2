@@ -1,6 +1,6 @@
 // Handles registration and login via API + spinner
 import { saveToken, saveUser } from "../utils/storage.js";
-import { apiBaseUrl } from "../api/config.js";
+import { apiBaseUrl } from "./config.js";
 import { showSpinner, hideSpinner } from "../utils/spinner.js";
 
 // Register a new user
