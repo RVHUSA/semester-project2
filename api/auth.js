@@ -25,7 +25,7 @@ export async function registerUser(username, email, password) {
 
     // If registration is successful redirect to login
     if (response.ok) {
-      window.location.href = "./login.js";
+      window.location.href = "./login.html";
     } else {
       if (errorMessage) {
         errorMessage.textContent =
