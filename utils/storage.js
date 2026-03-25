@@ -2,24 +2,25 @@
 const TOKEN_KEY = "token";
 const USER_KEY = "user";
 
-// Save the auth token to localStorage
+// Save the auth token to localStorage as a plain string
 export function saveToken(token) {
-  saveToStorage(TOKEN_KEY, token);
+  localStorage.setItem(TOKEN_KEY, token);
 }
 
 // Retrieve the auth token from localStorage
 export function getToken() {
-  return getFromStorage(TOKEN_KEY);
+  return localStorage.getItem(TOKEN_KEY);
 }
 
-// Save user info to localStorage
+// Save user info to localStorage as JSON
 export function saveUser(user) {
-  saveToStorage(USER_KEY, user);
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
 }
 
 // Retrieve the stored user from localStorage
 export function getUser() {
-  return getFromStorage(USER_KEY);
+  const value = localStorage.getItem(USER_KEY);
+  return value ? JSON.parse(value) : null;
 }
 
 // Get username from the stored user
@@ -37,15 +38,4 @@ export function clearKey(key) {
 export function clearStorage() {
   clearKey(TOKEN_KEY);
   clearKey(USER_KEY);
-}
-
-// Helper function to store data in localStorage as JSON
-function saveToStorage(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-}
-
-// Helper function to retrieve and parse JSON data from localStorage
-function getFromStorage(key) {
-  const value = localStorage.getItem(key);
-  return value ? JSON.parse(value) : null;
 }
