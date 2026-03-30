@@ -16,5 +16,125 @@
 
     <link rel="stylesheet" href="/styles/css/styles.css" />
   </head>
-  <body></body>
+  <body>
+    <!-- NAVBAR -->
+    <header class="site-header">
+      <nav class="navbar-custom">
+        <div class="container">
+          <!-- Top row in the navbar (logo, usersummary, auth)-->
+          <div class="nav-top">
+            <a href="/index.html" class="nav-logo-link">
+              <img
+                src="/assets/images/vv-logo.png"
+                alt="Vintage Vault logo"
+                class="site-logo"
+              />
+            </a>
+
+            <!-- Desktop auth (user is logged-in) -->
+            <div class="nav-user-area" id="desktop-auth-area">
+              <a
+                href="/profile/profile.html"
+                class="nav-user-link"
+                id="desktop-username"
+              ></a>
+              <a
+                href="/profile/profile.html"
+                class="nav-user-link"
+                id="desktop-credits"
+              ></a>
+              <button type="button" class="logout-btn" id="logout-btn">
+                Log out
+              </button>
+            </div>
+
+            <!-- Desktop guest -->
+            <div class="nav-guest-area" id="desktop-guest-area">
+              <a href="/auth/login.html" class="nav-user-link">Login</a>
+              <span>|</span>
+              <a href="/auth/register.html" class="nav-user-link">Register</a>
+            </div>
+
+            <!-- Mobile toggle -->
+            <button
+              class="navbar-toggler"
+              id="menu-toggle"
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+
+          <!-- Mobile user summary (username and credits) -->
+          <div class="mobile-user-summary" id="mobile-user-summary">
+            <a
+              href="/profile/profile.html"
+              class="nav-user-link"
+              id="mobile-username"
+            ></a>
+            <a
+              href="/profile/profile.html"
+              class="nav-user-link"
+              id="mobile-credits"
+            ></a>
+          </div>
+
+          <!-- Desktop nav (links) -->
+          <div class="nav-menu-desktop">
+            <div class="nav-links-wrapper">
+              <ul class="nav-links">
+                <li><a href="/index.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="" class="nav-link">About</a>
+                </li>
+                <li>
+                  <a href="" class="nav-link">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Mobile nav (links) -->
+          <div class="nav-menu-mobile" id="mobile-menu">
+            <div class="mobile-links-wrapper">
+              <ul class="nav-links-mobile">
+                <li><a href="/index.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="" class="nav-link">About</a>
+                </li>
+                <li>
+                  <a href="" class="nav-link">Contact</a>
+                </li>
+              </ul>
+
+              <!-- Mobile auth (user is logged-in) -->
+              <div class="mobile-menu-actions" id="mobile-auth-area">
+                <button type="button" class="logout-btn" id="mobile-logout-btn">
+                  Log out
+                </button>
+              </div>
+
+              <!-- Mobile guest -->
+              <div class="mobile-menu-actions" id="mobile-guest-area">
+                <a href="/auth/login.html" class="nav-user-link">Login</a>
+                <a href="/auth/register.html" class="nav-user-link">Register</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="mb-4">Listings</h1>
+    </main>
+
+    <div id="spinner" class="spinner-overlay hidden">
+      <div class="spinner"></div>
+    </div>
+
+    <script type="module" src="/components/navbar.js"></script>
+  </body>
 </html>
