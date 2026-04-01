@@ -51,8 +51,6 @@
             <!-- Desktop guest -->
             <div class="nav-guest-area" id="desktop-guest-area">
               <a href="/auth/login.html" class="nav-user-link">Login</a>
-              <span>|</span>
-              <a href="/auth/register.html" class="nav-user-link">Register</a>
             </div>
 
             <!-- Mobile toggle -->
@@ -119,7 +117,6 @@
               <!-- Mobile guest -->
               <div class="mobile-menu-actions" id="mobile-guest-area">
                 <a href="/auth/login.html" class="nav-user-link">Login</a>
-                <a href="/auth/register.html" class="nav-user-link">Register</a>
               </div>
             </div>
           </div>
@@ -129,12 +126,30 @@
 
     <main>
       <h1 class="mb-4">Listings</h1>
+      <div id="listings-container"></div>
     </main>
+
+    <template id="listing-card-template">
+      <div class="listing-card-wrapper">
+        <article class="listing-card">
+          <img class="listing-card__image" src="" alt="" />
+
+          <div class="listing-card__body">
+            <h2 class="listing-card__title"></h2>
+            <p class="listing-card__description"></p>
+            <p class="listing-card__bids"></p>
+            <p class="listing-card__ends"></p>
+            <p class="listing-card__expired-message">Bidding has ended.</p>
+          </div>
+        </article>
+      </div>
+    </template>
 
     <div id="spinner" class="spinner-overlay hidden">
       <div class="spinner"></div>
     </div>
 
     <script type="module" src="/components/navbar.js"></script>
+    <script type="module" src="/listings/listings.js"></script>
   </body>
 </html>
