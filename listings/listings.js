@@ -11,7 +11,9 @@ async function fetchListings() {
   showSpinner();
 
   try {
-    const response = await fetch(`${apiBaseUrl}/auction/listings?_bids=true`);
+    const response = await fetch(
+      `${apiBaseUrl}/auction/listings?_bids=true&_active=true`
+    );
     const result = await response.json();
 
     renderListings(result.data);
