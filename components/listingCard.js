@@ -13,19 +13,22 @@ export function createListingCard(listing) {
 
   // Select elements inside the template
   const cardWrapper = templateContent.querySelector(".listing-card-wrapper");
-  const image = templateContent.querySelector(".listing-card__image");
-  const title = templateContent.querySelector(".listing-card__title");
+  const image = templateContent.querySelector(".listing-card_image");
+  const title = templateContent.querySelector(".listing-card_title");
   const description = templateContent.querySelector(
-    ".listing-card__description"
+    ".listing-card_description"
   );
-  const bids = templateContent.querySelector(".listing-card__bids");
-  const ends = templateContent.querySelector(".listing-card__ends");
+  const bids = templateContent.querySelector(".listing-card_bids");
+  const ends = templateContent.querySelector(".listing-card_ends");
+  const detailsLink = templateContent.querySelector(
+    ".listing-card_details-link"
+  );
 
-  const bidArea = templateContent.querySelector(".listing-card__bid-area");
-  const bidInput = templateContent.querySelector(".listing-card__bid-input");
-  const bidButton = templateContent.querySelector(".listing-card__bid-button");
+  const bidArea = templateContent.querySelector(".listing-card_bid-area");
+  const bidInput = templateContent.querySelector(".listing-card_bid-input");
+  const bidButton = templateContent.querySelector(".listing-card_bid-button");
   const expiredMessage = templateContent.querySelector(
-    ".listing-card__expired-message"
+    ".listing-card_expired-message"
   );
 
   // Fill the card with data from the API
@@ -36,6 +39,7 @@ export function createListingCard(listing) {
   description.textContent = listing.description || "No description";
   bids.textContent = `Bids: ${listing._count?.bids || 0}`;
   ends.textContent = `Ends: ${new Date(listing.endsAt).toLocaleString()}`;
+  detailsLink.href = `/listings/listingSingle.html?id=${listing.id}`;
 
   // Sends to single listing page when the image is clicked
   image.addEventListener("click", () => {

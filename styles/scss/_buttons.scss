@@ -12,3 +12,24 @@
     background: #333;
   }
 }
+
+/* Listing bid button */
+.listing-card_bid-button {
+  border: none;
+  border-left: 1px solid #d9d9d9;
+  background: black;
+  color: white;
+  padding: 0 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 0 !important;
+}
+
+.listing-card_bid-button:hover {
+  background: #5c5c5c;
+  color: white;
+}
