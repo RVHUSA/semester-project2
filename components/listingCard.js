@@ -2,6 +2,7 @@
 import { apiBaseUrl, apiKey } from "../api/config.js";
 import { getToken } from "../utils/storage.js";
 import { fetchProfile } from "../api/profile.js";
+import { updateNavbarUser } from "./navbar.js";
 
 // Select the HTML template used to create listing cards
 const template = document.getElementById("listing-card-template");
@@ -27,6 +28,7 @@ export function createListingCard(listing) {
   const bidArea = templateContent.querySelector(".listing-card_bid-area");
   const bidInput = templateContent.querySelector(".listing-card_bid-input");
   const bidButton = templateContent.querySelector(".listing-card_bid-button");
+  const bidMessage = templateContent.querySelector(".listing-card_bid-message");
   const expiredMessage = templateContent.querySelector(
     ".listing-card_expired-message"
   );
@@ -68,7 +70,6 @@ export function createListingCard(listing) {
 
     // Redirect to login if the user is no longer logged in
     if (!currentToken) {
-      alert("You must login to place a bid.");
       window.location.href = "/auth/login.html";
       return;
     }
@@ -77,7 +78,8 @@ export function createListingCard(listing) {
 
     // Validate the bid amount
     if (!amount || amount <= 0) {
-      alert("Enter a valid bid.");
+      bidMessage.textContent = "Enter a valid bid.";
+      bidMessage.className = "listing-card_bid-message text-danger";
       return;
     }
 
@@ -98,22 +100,20 @@ export function createListingCard(listing) {
 
       // Handle invalid session
       if (response.status === 401) {
-        alert("Your session is invalid. Please log in again.");
         window.location.href = "/auth/login.html";
         return;
       }
 
       // Handle action that is not allowed
       if (response.status === 403) {
-        alert("You are not allowed to bid on this listing.");
+        bidMessage.textContent = "You are not allowed to bid on this listing.";
+        bidMessage.className = "listing-card_bid-message text-danger";
         return;
       }
 
       if (!response.ok) {
         throw new Error("Bid failed");
       }
-
-      alert("Bid placed!");
 
       // Update bid count in the UI
       const currentBidCount = listing._count?.bids || 0;
@@ -123,13 +123,19 @@ export function createListingCard(listing) {
       // Clear the input field after a successful bid
       bidInput.value = "";
 
-      await fetchProfile();
+      // Show success message
+      bidMessage.textContent = "Bid placed successfully.";
+      bidMessage.className = "listing-card_bid-message text-success";
 
-      // Reload page to refresh navbar credits
-      window.location.reload();
+      // Refresh profile data and update navbar credits
+      const updatedUser = await fetchProfile();
+      if (updatedUser) {
+        updateNavbarUser(updatedUser);
+      }
     } catch (error) {
       console.error("Bid error:", error);
-      alert("Could not place bid.");
+      bidMessage.textContent = "Could not place bid.";
+      bidMessage.className = "listing-card_bid-message text-danger";
     }
   });
 

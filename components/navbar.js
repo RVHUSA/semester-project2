@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await setupNavbar();
 });
 
+// Set up navbar when page loads
 async function setupNavbar() {
   // Get user from localStorage
   let user = getUser();
@@ -32,12 +33,6 @@ async function setupNavbar() {
   const mobileAuthArea = document.getElementById("mobile-auth-area");
   const mobileGuestArea = document.getElementById("mobile-guest-area");
 
-  // Elements where username and credits will be displayed
-  const desktopUsername = document.getElementById("desktop-username");
-  const desktopCredits = document.getElementById("desktop-credits");
-  const mobileUsername = document.getElementById("mobile-username");
-  const mobileCredits = document.getElementById("mobile-credits");
-
   // Logout buttons (desktop + mobile)
   const logoutBtn = document.getElementById("logout-btn");
   const mobileLogoutBtn = document.getElementById("mobile-logout-btn");
@@ -58,23 +53,8 @@ async function setupNavbar() {
       });
     });
 
-  // If user is logged-in set username and credits (fallback to 1000 if not available)
   if (user) {
-    if (desktopUsername) {
-      desktopUsername.textContent = user.name || "Profile";
-    }
-
-    if (desktopCredits) {
-      desktopCredits.textContent = `Credits: ${user.credits ?? 1000}`;
-    }
-
-    if (mobileUsername) {
-      mobileUsername.textContent = user.name || "Profile";
-    }
-
-    if (mobileCredits) {
-      mobileCredits.textContent = `Credits: ${user.credits ?? 1000}`;
-    }
+    updateNavbarUser(user);
 
     // Show authenticated UI
     desktopAuthArea?.classList.remove("is-hidden");
@@ -99,7 +79,31 @@ async function setupNavbar() {
   }
 }
 
-// Logout: clear storage and redirect to homepage
+// Update username and credits in navbar if user is logged-in (fallback to 1000 if not available)
+export function updateNavbarUser(user) {
+  const desktopUsername = document.getElementById("desktop-username");
+  const desktopCredits = document.getElementById("desktop-credits");
+  const mobileUsername = document.getElementById("mobile-username");
+  const mobileCredits = document.getElementById("mobile-credits");
+
+  if (desktopUsername) {
+    desktopUsername.textContent = user.name || "Profile";
+  }
+
+  if (desktopCredits) {
+    desktopCredits.textContent = `Credits: ${user.credits ?? 1000}`;
+  }
+
+  if (mobileUsername) {
+    mobileUsername.textContent = user.name || "Profile";
+  }
+
+  if (mobileCredits) {
+    mobileCredits.textContent = `Credits: ${user.credits ?? 1000}`;
+  }
+}
+
+// Logout: Clear storage and redirect to homepage
 function handleLogout() {
   clearStorage();
   window.location.href = "/index.html";
