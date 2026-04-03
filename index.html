@@ -51,8 +51,6 @@
             <!-- Desktop guest -->
             <div class="nav-guest-area" id="desktop-guest-area">
               <a href="/auth/login.html" class="nav-user-link">Login</a>
-              <span>|</span>
-              <a href="/auth/register.html" class="nav-user-link">Register</a>
             </div>
 
             <!-- Mobile toggle -->
@@ -119,7 +117,6 @@
               <!-- Mobile guest -->
               <div class="mobile-menu-actions" id="mobile-guest-area">
                 <a href="/auth/login.html" class="nav-user-link">Login</a>
-                <a href="/auth/register.html" class="nav-user-link">Register</a>
               </div>
             </div>
           </div>
@@ -127,14 +124,48 @@
       </nav>
     </header>
 
-    <main>
+    <main class="container mt-5">
       <h1 class="mb-4">Listings</h1>
+      <div id="listings-container" class="row g-4"></div>
     </main>
+
+    <template id="listing-card-template">
+      <div class="listing-card-wrapper col-12 col-sm-6 col-md-4">
+        <article class="listing-card h-100">
+          <img class="listing-card_image" src="" alt="" />
+
+          <div class="listing-card_body">
+            <h2 class="listing-card_title"></h2>
+            <p class="listing-card_description"></p>
+            <p class="listing-card_bids"></p>
+            <p class="listing-card_ends"></p>
+            <a href="#" class="listing-card_details-link">
+              <span>More details →</span>
+            </a>
+            <div class="listing-card_bid-area">
+              <input
+                type="number"
+                min="1"
+                placeholder="Your bid"
+                class="listing-card_bid-input"
+              />
+              <button type="button" class="btn listing-card_bid-button">
+                Bid
+              </button>
+            </div>
+            <p class="listing-card_expired-message text-danger mt-3">
+              Bidding has ended.
+            </p>
+          </div>
+        </article>
+      </div>
+    </template>
 
     <div id="spinner" class="spinner-overlay hidden">
       <div class="spinner"></div>
     </div>
 
     <script type="module" src="/components/navbar.js"></script>
+    <script type="module" src="/listings/listings.js"></script>
   </body>
 </html>
