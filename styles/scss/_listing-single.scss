@@ -1,0 +1,113 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+/* Single listing layout */
+.listing-single {
+  display: flex;
+  justify-content: center;
+}
+
+.listing-single_card {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Image Gallery */
+.listing-single_media {
+  position: relative;
+}
+
+.listing-single_image-wrapper {
+  width: 100%;
+  height: 400px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.listing-single_image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Navigation buttons for image gallery */
+.listing-single_nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+  font-size: 1rem;
+  @include rounded;
+}
+
+.listing-single_nav-prev {
+  left: 1rem;
+}
+
+.listing-single_nav-next {
+  right: 1rem;
+}
+
+/* Content and meta */
+.listing-single_body {
+  padding: 1.5rem;
+}
+
+.listing-single_description {
+  min-height: unset;
+  display: block;
+  overflow: visible;
+  color: #737373;
+}
+
+/* Tags, seller, end date */
+.listing-single_meta {
+  color: #555;
+  margin: 0;
+}
+
+/* Bidding section */
+.listing-single_bid-box,
+.listing-single_bids {
+  margin-top: 1.5rem;
+}
+
+.listing-single_subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.listing-single_bids-list {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.listing-single_bids-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* Message below bid input (errors/success) */
+#listing-bid-message {
+  margin-top: 0.75rem;
+}
+
+#listing-bid-message a {
+  color: $secondary;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .listing-single_image-wrapper {
+    height: 260px;
+  }
+
+  .listing-single_body {
+    padding: 1rem;
+  }
+}
