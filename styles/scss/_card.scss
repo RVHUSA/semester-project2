@@ -1,7 +1,7 @@
 @use "variables" as *;
 @use "mixins" as *;
 
-/* Base */
+/* Base card */
 .card-custom {
   width: 100%;
   max-width: 420px;
@@ -15,7 +15,7 @@
   @extend .card-custom;
 }
 
-/* Listing card */
+/* Listing card container */
 .listing-card {
   width: 100%;
   height: 100%;
@@ -31,6 +31,7 @@
   display: flex;
 }
 
+/* Listing card image */
 .listing-card_image {
   width: 100%;
   height: 220px;
@@ -39,6 +40,7 @@
   cursor: pointer;
 }
 
+/* Listing card content */
 .listing-card_body {
   display: flex;
   flex-direction: column;
@@ -75,6 +77,7 @@
   margin: 0;
 }
 
+/* Details link in listing card */
 .listing-card_details-link {
   display: flex;
   align-items: center;
@@ -89,13 +92,13 @@
   text-decoration: underline;
 }
 
+/* Bid section in listing card */
 .listing-card_bid-area {
   display: flex;
   align-items: stretch;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
   overflow: hidden;
-  margin-top: auto;
   width: 100%;
   max-width: 260px;
   margin-top: auto;
@@ -110,8 +113,18 @@
   outline: none;
 }
 
+/* Mobile styles */
 @media (max-width: 768px) {
   .listing-card_bid-area {
     max-width: 100%;
   }
 }
+<<<<<<< Updated upstream
+=======
+
+/* Feedback message for bid in listing card */
+.listing-card_bid-message {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+>>>>>>> Stashed changes
