@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="This is a created listing with all details published on Vintage Vault"
+    />
+    <title>Vintage Vault | Listing</title>
+
+    <!-- Google Fonts - Source: https://fonts.google.com/specimen/Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../styles/css/styles.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="site-header">
+      <nav class="navbar-custom">
+        <div class="container">
+          <!-- Top row in the navbar (logo, usersummary, auth)-->
+          <div class="nav-top">
+            <a href="/index.html" class="nav-logo-link">
+              <img
+                src="/assets/images/vv-logo.png"
+                alt="Vintage Vault logo"
+                class="site-logo"
+              />
+            </a>
+
+            <!-- Desktop auth (user is logged-in) -->
+            <div class="nav-user-area" id="desktop-auth-area">
+              <a
+                href="/profile/profile.html"
+                class="nav-user-link"
+                id="desktop-username"
+              ></a>
+              <a
+                href="/profile/profile.html"
+                class="nav-user-link"
+                id="desktop-credits"
+              ></a>
+              <button type="button" class="logout-btn" id="logout-btn">
+                Log out
+              </button>
+            </div>
+
+            <!-- Desktop guest -->
+            <div class="nav-guest-area" id="desktop-guest-area">
+              <a href="/auth/login.html" class="nav-user-link">Login</a>
+            </div>
+
+            <!-- Mobile toggle -->
+            <button
+              class="navbar-toggler"
+              id="menu-toggle"
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+
+          <!-- Mobile user summary (username and credits) -->
+          <div class="mobile-user-summary" id="mobile-user-summary">
+            <a
+              href="/profile/profile.html"
+              class="nav-user-link"
+              id="mobile-username"
+            ></a>
+            <a
+              href="/profile/profile.html"
+              class="nav-user-link"
+              id="mobile-credits"
+            ></a>
+          </div>
+
+          <!-- Desktop nav (links) -->
+          <div class="nav-menu-desktop">
+            <div class="nav-links-wrapper">
+              <ul class="nav-links">
+                <li><a href="/index.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="#" class="nav-link">About</a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Mobile nav (links) -->
+          <div class="nav-menu-mobile" id="mobile-menu">
+            <div class="mobile-links-wrapper">
+              <ul class="nav-links-mobile">
+                <li><a href="/index.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="#" class="nav-link">About</a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link">Contact</a>
+                </li>
+              </ul>
+
+              <!-- Mobile auth (user is logged-in) -->
+              <div class="mobile-menu-actions" id="mobile-auth-area">
+                <button type="button" class="logout-btn" id="mobile-logout-btn">
+                  Log out
+                </button>
+              </div>
+
+              <!-- Mobile guest -->
+              <div class="mobile-menu-actions" id="mobile-guest-area">
+                <a href="/auth/login.html" class="nav-user-link">Login</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mt-5">
+      <section class="listing-single">
+        <article class="listing-card listing-single_card">
+          <div class="listing-single_media">
+            <button
+              type="button"
+              class="listing-single_nav listing-single_nav-prev"
+              id="image-prev"
+            >
+              ←
+            </button>
+
+            <div class="listing-single_image-wrapper">
+              <img
+                id="listing-image"
+                class="listing-single_image"
+                src=""
+                alt=""
+              />
+            </div>
+
+            <button
+              type="button"
+              class="listing-single_nav listing-single_nav-next"
+              id="image-next"
+            >
+              →
+            </button>
+          </div>
+
+          <div class="listing-card_body listing-single_body">
+            <h1 id="listing-title" class="listing-card_title"></h1>
+
+            <p
+              id="listing-description"
+              class="listing-card_description listing-single_description"
+            ></p>
+
+            <p id="listing-tags" class="listing-single_meta"></p>
+            <p
+              id="listing-ends"
+              class="listing-card_ends listing-single_meta"
+            ></p>
+            <p id="listing-seller" class="listing-single_meta"></p>
+
+            <div class="listing-single_bid-box">
+              <h2 class="listing-single_subtitle">Place a bid</h2>
+
+              <div id="listing-bid-form" class="listing-card_bid-area">
+                <input
+                  id="listing-bid-input"
+                  type="number"
+                  min="1"
+                  placeholder="Your bid"
+                  class="listing-card_bid-input"
+                />
+                <button
+                  id="listing-bid-button"
+                  type="button"
+                  class="listing-card_bid-button"
+                >
+                  Bid
+                </button>
+              </div>
+
+              <p
+                id="listing-bid-message"
+                class="listing-card_expired-message"
+              ></p>
+            </div>
+
+            <div class="listing-single_bids">
+              <h2 class="listing-single_subtitle">Bid history</h2>
+              <ul id="listing-bids-list" class="listing-single_bids-list"></ul>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <div id="spinner" class="spinner-overlay hidden">
+      <div class="spinner"></div>
+    </div>
+
+    <script type="module" src="/components/navbar.js"></script>
+    <script type="module" src="listingSingle.js"></script>
+  </body>
+</html>
