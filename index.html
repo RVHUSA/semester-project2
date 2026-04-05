@@ -126,6 +126,31 @@
 
     <main class="container mt-5">
       <h1 class="mb-4">Listings</h1>
+
+      <!-- Search bar -->
+      <section class="listings-controls">
+        <input
+          type="search"
+          id="listing-search"
+          class="listings-controls_input"
+          placeholder="Search listings..."
+        />
+
+        <!-- Filtering -->
+        <select id="listing-tag" class="listings-controls_select">
+          <option value="">All categories</option>
+          <option value="vintage">Vintage</option>
+          <option value="furniture">Furniture</option>
+          <option value="fashion">Fashion</option>
+        </select>
+
+        <!-- Show all or active listings -->
+        <select id="listing-status" class="listings-controls_select">
+          <option value="">All listings</option>
+          <option value="true">Active listings</option>
+        </select>
+      </section>
+
       <div id="listings-container" class="row g-4"></div>
     </main>
 
