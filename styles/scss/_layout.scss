@@ -40,3 +40,17 @@ main.container {
   text-align: center;
   margin-bottom: 2rem;
 }
+
+/* Listings controls (Search, filtering and show all/active listing) */
+.listings-controls_input,
+.listings-controls_select {
+  border: 1px solid #d9d9d9;
+  box-shadow: none;
+}
+
+.listings-controls_input:focus,
+.listings-controls_select:focus {
+  border-color: #d9d9d9;
+  box-shadow: none;
+  outline: none;
+}

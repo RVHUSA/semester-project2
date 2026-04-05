@@ -128,27 +128,36 @@
       <h1 class="mb-4">Listings</h1>
 
       <!-- Search bar -->
-      <section class="listings-controls">
-        <input
-          type="search"
-          id="listing-search"
-          class="listings-controls_input"
-          placeholder="Search listings..."
-        />
+      <section class="row g-3 mb-4 listings-controls">
+        <div class="col-12 col-md-6">
+          <input
+            type="search"
+            id="listing-search"
+            class="form-control listings-controls_input"
+            placeholder="Search listings..."
+          />
+        </div>
 
         <!-- Filtering -->
-        <select id="listing-tag" class="listings-controls_select">
-          <option value="">All categories</option>
-          <option value="vintage">Vintage</option>
-          <option value="furniture">Furniture</option>
-          <option value="fashion">Fashion</option>
-        </select>
+        <div class="col-6 col-md-3">
+          <select id="listing-tag" class="form-select listings-controls_select">
+            <option value="">All categories</option>
+            <option value="vintage">Vintage</option>
+            <option value="furniture">Furniture</option>
+            <option value="fashion">Fashion</option>
+          </select>
+        </div>
 
         <!-- Show all or active listings -->
-        <select id="listing-status" class="listings-controls_select">
-          <option value="">All listings</option>
-          <option value="true">Active listings</option>
-        </select>
+        <div class="col-6 col-md-3">
+          <select
+            id="listing-status"
+            class="form-select listings-controls_select"
+          >
+            <option value="">All listings</option>
+            <option value="true">Active listings</option>
+          </select>
+        </div>
       </section>
 
       <div id="listings-container" class="row g-4"></div>
