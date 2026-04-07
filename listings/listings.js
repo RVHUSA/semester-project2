@@ -53,6 +53,20 @@ async function fetchListings() {
     const response = await fetch(url);
     const result = await response.json();
 
+    // Fetch active listings, including bids and seller info
+    const response = await fetch(
+      `${apiBaseUrl}/auction/listings?_bids=true&_seller=true&_active=true`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch listings");
+    }
+
+    if (isOwner) return;
+
+    const result = await response.json();
+
+    // Send data to render function
     renderListings(result.data || []);
   } catch (error) {
     console.error("Error fetching listings:", error);
@@ -64,6 +78,7 @@ async function fetchListings() {
 
 // Render all listings to the page
 function renderListings(listings) {
+  // Clear previous listings
   listingsContainer.innerHTML = "";
 
   // Show a message if no listings are found

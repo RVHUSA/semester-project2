@@ -1,6 +1,6 @@
-// Import API config, token and profile refresh function
+// Import API config, token, username and profile refresh function
 import { apiBaseUrl, apiKey } from "../api/config.js";
-import { getToken } from "../utils/storage.js";
+import { getToken, getUsername } from "../utils/storage.js";
 import { fetchProfile } from "../api/profile.js";
 import { updateNavbarUser } from "./navbar.js";
 
@@ -51,11 +51,15 @@ export function createListingCard(listing) {
   // Check if the listing is still active
   const isActive = new Date(listing.endsAt) > new Date();
 
-  // Get the current token from localStorage
+  // Get current user info
   const token = getToken();
+  const username = getUsername();
 
-  // Hide the bid area if the user is not logged in or the listing is expired
-  if (!token || !isActive) {
+  // Check if the logged-in user owns the listing
+  const isOwner = username && listing.seller?.name === username;
+
+  // Hide bid area if user is not logged in, listing is expired, or user owns the listing
+  if (!token || !isActive || isOwner) {
     bidArea.classList.add("is-hidden");
   }
 

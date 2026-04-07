@@ -1,6 +1,6 @@
-// Import API config, token and profile refresh function
+// Import API config, token, username and profile refresh function
 import { apiBaseUrl, apiKey } from "../api/config.js";
-import { getToken } from "../utils/storage.js";
+import { getToken, getUsername } from "../utils/storage.js";
 import { fetchProfile } from "../api/profile.js";
 import { updateNavbarUser } from "../components/navbar.js";
 
@@ -56,6 +56,7 @@ function updateImage() {
     // If there are no images - show placeholder and hide navigation buttons
     image.src = "https://placehold.co/600x400";
     image.alt = "Listing image";
+
     // Hide buttons since there is nothing to navigate
     prevButton.classList.add("is-hidden");
     nextButton.classList.add("is-hidden");
@@ -86,7 +87,7 @@ function renderBids(bids) {
     bids.forEach((bid) => {
       const li = document.createElement("li");
 
-      // Show bidder and bids used
+      // Show bidder and bid amount
       li.textContent = `${bid.bidder.name}: ${bid.amount} credits`;
       bidsList.appendChild(li);
     });
@@ -105,8 +106,12 @@ function displayListing(listing) {
   // Check if the listing is still active
   const isActive = new Date(listing.endsAt) > new Date();
 
-  // Get the current token from localStorage
+  // Get current user info
   const token = getToken();
+  const username = getUsername();
+
+  // Check if the logged-in user owns the listing
+  const isOwner = username && listing.seller?.name === username;
 
   // Fill listing info
   title.textContent = listing.title;
@@ -137,8 +142,8 @@ function displayListing(listing) {
   bidMessage.textContent = "";
   bidMessage.className = "listing-card_expired-message";
 
-  // Hide bid form if user is not logged-in or listing is expired
-  if (!token || !isActive) {
+  // Hide bid form if user is not logged-in, listing is expired, or user owns the listing
+  if (!token || !isActive || isOwner) {
     bidForm.classList.add("is-hidden");
   } else {
     bidForm.classList.remove("is-hidden");
@@ -164,6 +169,8 @@ function displayListing(listing) {
       window.location.href = "/auth/login.html";
       return;
     }
+
+    if (isOwner) return;
 
     const amount = Number(bidInput.value);
 
@@ -233,6 +240,7 @@ function displayListing(listing) {
 // Go to previous image in gallery
 prevButton.addEventListener("click", () => {
   if (!media.length) return;
+
   // Wraps around to last image in gallery
   currentImageIndex = (currentImageIndex - 1 + media.length) % media.length;
   updateImage();
@@ -241,6 +249,7 @@ prevButton.addEventListener("click", () => {
 // Go to next image in gallery
 nextButton.addEventListener("click", () => {
   if (!media.length) return;
+
   // Wraps around to first image in gallery
   currentImageIndex = (currentImageIndex + 1) % media.length;
   updateImage();
