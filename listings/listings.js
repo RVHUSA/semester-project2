@@ -35,10 +35,10 @@ async function fetchListings() {
       url += `&_tag=${encodeURIComponent(tagValue)}`;
     }
 
-    url += `&_bids=true`;
+    url += `&_bids=true&_seller=true`;
   } else {
     // Use normal listings endpoint when only filters are used
-    url = `${apiBaseUrl}/auction/listings?_bids=true`;
+    url = `${apiBaseUrl}/auction/listings?_bids=true&_seller=true`;
 
     if (statusValue === "true") {
       url += `&_active=true`;
@@ -51,19 +51,6 @@ async function fetchListings() {
 
   try {
     const response = await fetch(url);
-    const result = await response.json();
-
-    // Fetch active listings, including bids and seller info
-    const response = await fetch(
-      `${apiBaseUrl}/auction/listings?_bids=true&_seller=true&_active=true`
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch listings");
-    }
-
-    if (isOwner) return;
-
     const result = await response.json();
 
     // Send data to render function

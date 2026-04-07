@@ -16,6 +16,7 @@ const tags = document.getElementById("listing-tags");
 const ends = document.getElementById("listing-ends");
 const seller = document.getElementById("listing-seller");
 
+const bidTitle = document.getElementById("listing-bid-title");
 const bidForm = document.getElementById("listing-bid-form");
 const bidInput = document.getElementById("listing-bid-input");
 const bidButton = document.getElementById("listing-bid-button");
@@ -145,8 +146,10 @@ function displayListing(listing) {
   // Hide bid form if user is not logged-in, listing is expired, or user owns the listing
   if (!token || !isActive || isOwner) {
     bidForm.classList.add("is-hidden");
+    bidTitle.classList.add("is-hidden");
   } else {
     bidForm.classList.remove("is-hidden");
+    bidTitle.classList.remove("is-hidden");
   }
 
   // Show message if listing is expired
