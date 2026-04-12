@@ -27,6 +27,9 @@ const bidsList = document.getElementById("listing-bids-list");
 const prevButton = document.getElementById("image-prev");
 const nextButton = document.getElementById("image-next");
 
+const editButton = document.getElementById("listing-edit-button");
+const deleteButton = document.getElementById("listing-delete-button");
+
 // Track images
 let media = [];
 let currentImageIndex = 0;
@@ -51,6 +54,42 @@ async function fetchListing(id) {
   }
 }
 
+// Delete listing
+async function deleteListing(id) {
+  const token = getToken();
+
+  if (!token) {
+    window.location.href = "/auth/login.html";
+    return;
+  }
+
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this listing?"
+  );
+
+  if (!confirmed) return;
+
+  try {
+    const response = await fetch(`${apiBaseUrl}/auction/listings/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Could not delete listing");
+    }
+
+    window.location.href = "/index.html";
+  } catch (error) {
+    console.error(error);
+    bidMessage.textContent = "Could not delete listing.";
+    bidMessage.className = "listing-card_expired-message text-danger";
+  }
+}
+
 // Update current image in the gallery
 function updateImage() {
   if (!media.length) {
@@ -66,7 +105,6 @@ function updateImage() {
 
   // Set current image based on index
   image.src = media[currentImageIndex].url;
-  image.alt = media[currentImageIndex].alt || "Listing image";
 
   // If only one image - hide nav buttons
   if (media.length < 2) {
@@ -126,6 +164,25 @@ function displayListing(listing) {
   // Display end date and seller
   ends.textContent = `Ends at: ${new Date(listing.endsAt).toLocaleString()}`;
   seller.textContent = `Seller: ${listing.seller?.name || "Unknown"}`;
+
+  // Show owner actions
+  if (editButton && deleteButton) {
+    if (isOwner) {
+      editButton.classList.remove("is-hidden");
+      deleteButton.classList.remove("is-hidden");
+
+      editButton.onclick = () => {
+        window.location.href = `/listings/editListing.html?id=${listing.id}`;
+      };
+
+      deleteButton.onclick = () => {
+        deleteListing(listing.id);
+      };
+    } else {
+      editButton.classList.add("is-hidden");
+      deleteButton.classList.add("is-hidden");
+    }
+  }
 
   // Set images (fallback to placeholder)
   media = listing.media?.length
@@ -229,7 +286,7 @@ function displayListing(listing) {
         updateNavbarUser(updatedUser);
       }
 
-      // Refresh listing data and re-render page
+      // Refresh listing data
       const updatedListing = await fetchListing(listing.id);
       displayListing(updatedListing);
     } catch (error) {
