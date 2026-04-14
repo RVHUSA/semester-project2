@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="This is Vintage Vaults edit listing page, where you can edit your own listings."
+    />
+    <title>Vintage Vault | Edit listing</title>
+
+    <!-- Google Fonts - Source: https://fonts.google.com/specimen/Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/styles/css/styles.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="site-header">
+      <nav class="navbar-custom">
+        <div class="container">
+          <!-- Top row in the navbar (logo, usersummary, auth)-->
+          <div class="nav-top">
+            <a href="/index.html" class="nav-logo-link">
+              <img
+                src="/assets/images/vv-logo.png"
+                alt="Vintage Vault logo"
+                class="site-logo"
+              />
+            </a>
+
+            <!-- Desktop auth (user is logged-in) -->
+            <div class="nav-user-area" id="desktop-auth-area">
+              <a
+                href="/profile/profile.html"
+                class="nav-user-link"
+                id="desktop-username"
+              ></a>
+              <a
+                href="/profile/profile.html"
+                class="nav-user-link"
+                id="desktop-credits"
+              ></a>
+              <button type="button" class="logout-btn" id="logout-btn">
+                Log out
+              </button>
+            </div>
+
+            <!-- Desktop guest -->
+            <div class="nav-guest-area" id="desktop-guest-area">
+              <a href="/auth/login.html" class="nav-user-link">Login</a>
+            </div>
+
+            <!-- Mobile toggle -->
+            <button
+              class="navbar-toggler"
+              id="menu-toggle"
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+
+          <!-- Mobile user summary (username and credits) -->
+          <div class="mobile-user-summary" id="mobile-user-summary">
+            <a
+              href="/profile/profile.html"
+              class="nav-user-link"
+              id="mobile-username"
+            ></a>
+            <a
+              href="/profile/profile.html"
+              class="nav-user-link"
+              id="mobile-credits"
+            ></a>
+          </div>
+
+          <!-- Desktop nav (links) -->
+          <div class="nav-menu-desktop">
+            <div class="nav-links-wrapper">
+              <ul class="nav-links">
+                <li><a href="/index.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="#" class="nav-link">About</a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Mobile nav (links) -->
+          <div class="nav-menu-mobile" id="mobile-menu">
+            <div class="mobile-links-wrapper">
+              <ul class="nav-links-mobile">
+                <li><a href="/index.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="#" class="nav-link">About</a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link">Contact</a>
+                </li>
+              </ul>
+
+              <!-- Mobile auth (user is logged-in) -->
+              <div class="mobile-menu-actions" id="mobile-auth-area">
+                <button type="button" class="logout-btn" id="mobile-logout-btn">
+                  Log out
+                </button>
+              </div>
+
+              <!-- Mobile guest -->
+              <div class="mobile-menu-actions" id="mobile-guest-area">
+                <a href="/auth/login.html" class="nav-user-link">Login</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mt-5">
+      <section class="edit-listing">
+        <h1>Edit listing</h1>
+
+        <form id="edit-listing-form" class="edit-form">
+          <div>
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" required />
+          </div>
+
+          <div>
+            <label for="description">Description</label>
+            <textarea id="description" name="description"></textarea>
+          </div>
+
+          <div>
+            <label for="tags">Tags</label>
+            <input
+              id="tags"
+              name="tags"
+              type="text"
+              placeholder="vintage, chair, home"
+            />
+          </div>
+
+          <div>
+            <label for="image-url">Image URLs</label>
+            <input
+              id="image-url"
+              name="image-url"
+              type="text"
+              placeholder="https://image1.jpg, https://image2.jpg"
+            />
+          </div>
+
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            <button
+              id="listing-edit-button"
+              type="submit"
+              class="btn btn-dark btn-sm"
+            >
+              Update
+            </button>
+
+            <button
+              id="listing-delete-button"
+              type="button"
+              class="btn btn-danger btn-sm"
+            >
+              Delete
+            </button>
+          </div>
+          <p id="edit-listing-message"></p>
+        </form>
+      </section>
+    </main>
+
+    <div id="spinner" class="spinner-overlay hidden">
+      <div class="spinner"></div>
+    </div>
+
+    <script type="module" src="/listings/editListing.js"></script>
+    <script type="module" src="/components/navbar.js"></script>
+  </body>
+</html>
