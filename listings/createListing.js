@@ -36,7 +36,7 @@ form.addEventListener("submit", async (event) => {
   const media = imageUrl
     ? imageUrl.split(",").map((url) => ({
         url: url.trim(),
-        alt: imageAlt || "Listing image",
+        alt: "Listing image",
       }))
     : [];
 
