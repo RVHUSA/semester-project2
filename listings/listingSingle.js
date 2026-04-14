@@ -29,6 +29,7 @@ const nextButton = document.getElementById("image-next");
 
 const editButton = document.getElementById("listing-edit-button");
 const deleteButton = document.getElementById("listing-delete-button");
+const message = document.getElementById("listing-delete-message");
 
 // Track images
 let media = [];
@@ -85,8 +86,8 @@ async function deleteListing(id) {
     window.location.href = "/index.html";
   } catch (error) {
     console.error(error);
-    bidMessage.textContent = "Could not delete listing.";
-    bidMessage.className = "listing-card_expired-message text-danger";
+    message.textContent = "Could not delete listing.";
+    message.className = "text-danger";
   }
 }
 
