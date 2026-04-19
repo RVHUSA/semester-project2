@@ -1,8 +1,9 @@
-// Import API config, token, username and profile refresh function
+// Import API config, token, username, spinner and profile refresh function
 import { apiBaseUrl, apiKey } from "../api/config.js";
 import { getToken, getUsername } from "../utils/storage.js";
 import { fetchProfile } from "../api/profile.js";
 import { updateNavbarUser } from "../components/navbar.js";
+import { showSpinner, hideSpinner } from "../utils/spinner.js";
 
 // Get listing id from URL
 const params = new URLSearchParams(window.location.search);
@@ -35,8 +36,27 @@ const message = document.getElementById("listing-delete-message");
 let media = [];
 let currentImageIndex = 0;
 
+// Reset delete message
+function clearMessage() {
+  if (message) {
+    message.textContent = "";
+    message.className = "form-message";
+  }
+}
+
+// Show delete error message
+function showError(text) {
+  if (message) {
+    message.textContent = text;
+    message.className = "form-message form-message--error";
+  }
+}
+
 // Fetch one listing from the API
 async function fetchListing(id) {
+  clearMessage();
+  showSpinner();
+
   try {
     const response = await fetch(
       `${apiBaseUrl}/auction/listings/${id}?_seller=true&_bids=true`
@@ -52,11 +72,15 @@ async function fetchListing(id) {
     console.error(error);
     title.textContent = "Failed to load listing.";
     return null;
+  } finally {
+    hideSpinner();
   }
 }
 
 // Delete listing
 async function deleteListing(id) {
+  clearMessage();
+
   const token = getToken();
 
   if (!token) {
@@ -69,6 +93,8 @@ async function deleteListing(id) {
   );
 
   if (!confirmed) return;
+
+  showSpinner();
 
   try {
     const response = await fetch(`${apiBaseUrl}/auction/listings/${id}`, {
@@ -86,8 +112,9 @@ async function deleteListing(id) {
     window.location.href = "/index.html";
   } catch (error) {
     console.error(error);
-    message.textContent = "Could not delete listing.";
-    message.className = "text-danger";
+    showError("Could not delete listing.");
+  } finally {
+    hideSpinner();
   }
 }
 
@@ -97,8 +124,6 @@ function updateImage() {
     // If there are no images - show placeholder and hide navigation buttons
     image.src = "https://placehold.co/600x400";
     image.alt = "Listing image";
-
-    // Hide buttons since there is nothing to navigate
     prevButton.classList.add("is-hidden");
     nextButton.classList.add("is-hidden");
     return;
@@ -106,6 +131,7 @@ function updateImage() {
 
   // Set current image based on index
   image.src = media[currentImageIndex].url;
+  image.alt = media[currentImageIndex].alt || "Listing image";
 
   // If only one image - hide nav buttons
   if (media.length < 2) {
@@ -242,6 +268,8 @@ function displayListing(listing) {
       return;
     }
 
+    showSpinner();
+
     try {
       // Send bid request to the API
       const response = await fetch(
@@ -294,6 +322,8 @@ function displayListing(listing) {
       console.error(error);
       bidMessage.textContent = "Could not place bid.";
       bidMessage.className = "listing-card_expired-message text-danger";
+    } finally {
+      hideSpinner();
     }
   };
 }

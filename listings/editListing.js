@@ -1,6 +1,7 @@
-// Import API config and token
+// Import API config, token and spinner
 import { apiBaseUrl, apiKey } from "../api/config.js";
 import { getToken } from "../utils/storage.js";
+import { showSpinner, hideSpinner } from "../utils/spinner.js";
 
 // Get listing id from URL
 const params = new URLSearchParams(window.location.search);
@@ -11,13 +12,40 @@ const form = document.getElementById("edit-listing-form");
 const message = document.getElementById("edit-listing-message");
 const deleteButton = document.getElementById("listing-delete-button");
 
+// Reset message
+function clearMessage() {
+  if (message) {
+    message.textContent = "";
+    message.className = "form-message";
+  }
+}
+
+// Show error message
+function showError(text) {
+  if (message) {
+    message.textContent = text;
+    message.className = "form-message form-message--error";
+  }
+}
+
+// Show success message
+function showSuccess(text) {
+  if (message) {
+    message.textContent = text;
+    message.className = "form-message form-message--success";
+  }
+}
+
 // Fetch listing data from API
 async function fetchListing(id) {
+  clearMessage();
+
   if (!id) {
-    message.textContent = "Missing listing id.";
-    message.className = "text-danger";
+    showError("Missing listing id.");
     return null;
   }
+
+  showSpinner();
 
   try {
     const response = await fetch(`${apiBaseUrl}/auction/listings/${id}`);
@@ -30,9 +58,10 @@ async function fetchListing(id) {
     return result.data;
   } catch (error) {
     console.error(error);
-    message.textContent = "Could not load listing.";
-    message.className = "text-danger";
+    showError("Could not load listing.");
     return null;
+  } finally {
+    hideSpinner();
   }
 }
 
@@ -50,6 +79,7 @@ function populateForm(listing) {
 // Handle form submit
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+  clearMessage();
 
   const token = getToken();
 
@@ -88,6 +118,8 @@ form.addEventListener("submit", async (event) => {
     media,
   };
 
+  showSpinner();
+
   try {
     const response = await fetch(
       `${apiBaseUrl}/auction/listings/${listingId}`,
@@ -106,20 +138,22 @@ form.addEventListener("submit", async (event) => {
       throw new Error("Could not update listing");
     }
 
-    message.textContent = "Listing updated successfully.";
-    message.className = "text-success";
+    showSuccess("Listing updated successfully.");
 
     // Redirect to single listing page
     window.location.href = `/listings/listingSingle.html?id=${listingId}`;
   } catch (error) {
     console.error(error);
-    message.textContent = "Could not update listing.";
-    message.className = "text-danger";
+    showError("Could not update listing.");
+  } finally {
+    hideSpinner();
   }
 });
 
 // Handle delete button
 deleteButton.addEventListener("click", async () => {
+  clearMessage();
+
   const token = getToken();
 
   if (!token) {
@@ -132,6 +166,8 @@ deleteButton.addEventListener("click", async () => {
   );
 
   if (!confirmed) return;
+
+  showSpinner();
 
   try {
     const response = await fetch(
@@ -152,8 +188,9 @@ deleteButton.addEventListener("click", async () => {
     window.location.href = "/index.html";
   } catch (error) {
     console.error(error);
-    message.textContent = "Could not delete listing.";
-    message.className = "text-danger";
+    showError("Could not delete listing.");
+  } finally {
+    hideSpinner();
   }
 });
 
