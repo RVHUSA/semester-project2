@@ -1,5 +1,6 @@
-// Import API, listing card component and spinner
+// Import API, token, listing card component and spinner
 import { apiBaseUrl } from "../api/config.js";
+import { getToken } from "../utils/storage.js";
 import { createListingCard } from "../components/listingCard.js";
 import { showSpinner, hideSpinner } from "../utils/spinner.js";
 
@@ -10,6 +11,16 @@ const listingsContainer = document.getElementById("listings-container");
 const searchInput = document.getElementById("listing-search");
 const tagSelect = document.getElementById("listing-tag");
 const statusSelect = document.getElementById("listing-status");
+const createListingButton = document.getElementById("create-listing-button");
+
+// Show create listing button only for logged-in users
+const token = getToken();
+
+if (token) {
+  createListingButton.classList.remove("is-hidden");
+} else {
+  createListingButton.classList.add("is-hidden");
+}
 
 // Fetch listings from API based on current search and filter values
 async function fetchListings() {
