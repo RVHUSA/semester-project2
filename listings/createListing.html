@@ -127,43 +127,72 @@
       </nav>
     </header>
 
-    <main class="container mt-5">
-      <section class="create-listing">
-        <h1>Create listing</h1>
+    <main class="container my-5">
+      <section
+        class="create-listing col-12 col-md-8 col-lg-6 mx-auto shadow rounded-3 bg-white border-0 p-4"
+      >
+        <h1 class="h3 text-center mb-4">Create listing</h1>
 
         <form id="create-listing-form" class="create-form">
-          <div>
-            <label for="title">Title</label>
-            <input id="title" name="title" type="text" required />
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input
+              id="title"
+              name="title"
+              type="text"
+              class="form-control border"
+              required
+            />
           </div>
 
-          <div>
-            <label for="description">Description</label>
-            <textarea id="description" name="description"></textarea>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              class="form-control border"
+              rows="4"
+            ></textarea>
           </div>
 
-          <div>
-            <label for="tags">Tags (comma separated)</label>
+          <div class="mb-3">
+            <label for="tags" class="form-label">Tags (comma separated)</label>
             <input
               id="tags"
               name="tags"
               type="text"
+              class="form-control border"
               placeholder="vintage, chair, home"
             />
           </div>
 
-          <div>
-            <label for="image-url">Image URL (comma separated)</label>
-            <input id="image-url" name="image-url" type="url" />
+          <div class="mb-3">
+            <label for="image-url" class="form-label"
+              >Image URL (comma separated)</label
+            >
+            <input
+              id="image-url"
+              name="image-url"
+              type="text"
+              class="form-control border"
+            />
           </div>
 
-          <div>
-            <label for="ends-at">Ends at</label>
-            <input id="ends-at" name="ends-at" type="datetime-local" required />
+          <div class="mb-3">
+            <label for="ends-at" class="form-label">Ends at</label>
+            <input
+              id="ends-at"
+              name="ends-at"
+              type="datetime-local"
+              class="form-control border"
+              required
+            />
           </div>
 
-          <button type="submit">Create listing</button>
-          <p id="create-listing-message"></p>
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn-regular">Create listing</button>
+          </div>
+          <p id="create-listing-message" class="form-message"></p>
         </form>
       </section>
     </main>
@@ -172,7 +201,7 @@
       <div class="spinner"></div>
     </div>
 
-    <script type="module" src="/listings/createListing.js"></script>
     <script type="module" src="/components/navbar.js"></script>
+    <script type="module" src="/listings/createListing.js"></script>
   </body>
 </html>

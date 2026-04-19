@@ -1,8 +1,9 @@
-// Import API config, token, username and profile refresh function
+// Import API config, token, username, spinner and profile refresh function
 import { apiBaseUrl, apiKey } from "../api/config.js";
 import { getToken, getUsername } from "../utils/storage.js";
 import { fetchProfile } from "../api/profile.js";
 import { updateNavbarUser } from "../components/navbar.js";
+import { showSpinner, hideSpinner } from "../utils/spinner.js";
 
 // Get listing id from URL
 const params = new URLSearchParams(window.location.search);
@@ -27,12 +28,35 @@ const bidsList = document.getElementById("listing-bids-list");
 const prevButton = document.getElementById("image-prev");
 const nextButton = document.getElementById("image-next");
 
+const editButton = document.getElementById("listing-edit-button");
+const deleteButton = document.getElementById("listing-delete-button");
+const message = document.getElementById("listing-delete-message");
+
 // Track images
 let media = [];
 let currentImageIndex = 0;
 
+// Reset delete message
+function clearMessage() {
+  if (message) {
+    message.textContent = "";
+    message.className = "form-message";
+  }
+}
+
+// Show delete error message
+function showError(text) {
+  if (message) {
+    message.textContent = text;
+    message.className = "form-message form-message--error";
+  }
+}
+
 // Fetch one listing from the API
 async function fetchListing(id) {
+  clearMessage();
+  showSpinner();
+
   try {
     const response = await fetch(
       `${apiBaseUrl}/auction/listings/${id}?_seller=true&_bids=true`
@@ -48,6 +72,49 @@ async function fetchListing(id) {
     console.error(error);
     title.textContent = "Failed to load listing.";
     return null;
+  } finally {
+    hideSpinner();
+  }
+}
+
+// Delete listing
+async function deleteListing(id) {
+  clearMessage();
+
+  const token = getToken();
+
+  if (!token) {
+    window.location.href = "/auth/login.html";
+    return;
+  }
+
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this listing?"
+  );
+
+  if (!confirmed) return;
+
+  showSpinner();
+
+  try {
+    const response = await fetch(`${apiBaseUrl}/auction/listings/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Could not delete listing");
+    }
+
+    window.location.href = "/index.html";
+  } catch (error) {
+    console.error(error);
+    showError("Could not delete listing.");
+  } finally {
+    hideSpinner();
   }
 }
 
@@ -57,8 +124,6 @@ function updateImage() {
     // If there are no images - show placeholder and hide navigation buttons
     image.src = "https://placehold.co/600x400";
     image.alt = "Listing image";
-
-    // Hide buttons since there is nothing to navigate
     prevButton.classList.add("is-hidden");
     nextButton.classList.add("is-hidden");
     return;
@@ -127,6 +192,25 @@ function displayListing(listing) {
   ends.textContent = `Ends at: ${new Date(listing.endsAt).toLocaleString()}`;
   seller.textContent = `Seller: ${listing.seller?.name || "Unknown"}`;
 
+  // Show owner actions
+  if (editButton && deleteButton) {
+    if (isOwner) {
+      editButton.classList.remove("is-hidden");
+      deleteButton.classList.remove("is-hidden");
+
+      editButton.onclick = () => {
+        window.location.href = `/listings/editListing.html?id=${listing.id}`;
+      };
+
+      deleteButton.onclick = () => {
+        deleteListing(listing.id);
+      };
+    } else {
+      editButton.classList.add("is-hidden");
+      deleteButton.classList.add("is-hidden");
+    }
+  }
+
   // Set images (fallback to placeholder)
   media = listing.media?.length
     ? listing.media
@@ -184,6 +268,8 @@ function displayListing(listing) {
       return;
     }
 
+    showSpinner();
+
     try {
       // Send bid request to the API
       const response = await fetch(
@@ -229,13 +315,15 @@ function displayListing(listing) {
         updateNavbarUser(updatedUser);
       }
 
-      // Refresh listing data and re-render page
+      // Refresh listing data
       const updatedListing = await fetchListing(listing.id);
       displayListing(updatedListing);
     } catch (error) {
       console.error(error);
       bidMessage.textContent = "Could not place bid.";
       bidMessage.className = "listing-card_expired-message text-danger";
+    } finally {
+      hideSpinner();
     }
   };
 }
