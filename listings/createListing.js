@@ -1,14 +1,40 @@
-// Import API config and token
+// Import API config, token and spinner
 import { apiBaseUrl, apiKey } from "../api/config.js";
 import { getToken } from "../utils/storage.js";
+import { showSpinner, hideSpinner } from "../utils/spinner.js";
 
 // Select form elements
 const form = document.getElementById("create-listing-form");
 const message = document.getElementById("create-listing-message");
 
+// Reset message
+function clearMessage() {
+  if (message) {
+    message.textContent = "";
+    message.className = "form-message";
+  }
+}
+
+// Show error message
+function showError(text) {
+  if (message) {
+    message.textContent = text;
+    message.className = "form-message form-message--error";
+  }
+}
+
+// Show success message
+function showSuccess(text) {
+  if (message) {
+    message.textContent = text;
+    message.className = "form-message form-message--success";
+  }
+}
+
 // Handle form submit
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+  clearMessage();
 
   const token = getToken();
 
@@ -34,14 +60,30 @@ form.addEventListener("submit", async (event) => {
 
   // Convert comma-separated image URLs into media array
   const media = imageUrl
-    ? imageUrl.split(",").map((url) => ({
-        url: url.trim(),
-        alt: imageAlt || "Listing image",
-      }))
+    ? imageUrl
+        .split(",")
+        .map((url) => url.trim())
+        .filter(Boolean)
+        .map((url) => ({
+          url,
+          alt: "Listing image",
+        }))
     : [];
 
+  if (!endsAtInput) {
+    showError("Please select an end date.");
+    return;
+  }
+
+  const endsAtDate = new Date(endsAtInput);
+
+  if (Number.isNaN(endsAtDate.getTime())) {
+    showError("Please enter a valid end date.");
+    return;
+  }
+
   // Convert datetime-local value to ISO string
-  const endsAt = new Date(endsAtInput).toISOString();
+  const endsAt = endsAtDate.toISOString();
 
   // Build request body
   const listingData = {
@@ -51,6 +93,8 @@ form.addEventListener("submit", async (event) => {
     media,
     endsAt,
   };
+
+  showSpinner();
 
   try {
     const response = await fetch(`${apiBaseUrl}/auction/listings`, {
@@ -63,20 +107,21 @@ form.addEventListener("submit", async (event) => {
       body: JSON.stringify(listingData),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      throw new Error("Could not create listing");
+      console.error("Create listing error:", data);
+      throw new Error(data.errors?.[0]?.message || "Could not create listing");
     }
 
-    const result = await response.json();
-
-    message.textContent = "Listing created successfully.";
-    message.className = "text-success";
+    showSuccess("Listing created successfully.");
 
     // Redirect to single listing page
-    window.location.href = `/listings/listingSingle.html?id=${result.data.id}`;
+    window.location.href = `/listings/listingSingle.html?id=${data.data.id}`;
   } catch (error) {
     console.error(error);
-    message.textContent = "Could not create listing.";
-    message.className = "text-danger";
+    showError(error.message || "Could not create listing.");
+  } finally {
+    hideSpinner();
   }
 });

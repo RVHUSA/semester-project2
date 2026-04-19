@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="This is a created listing with all details published on Vintage Vault"
+      content="This is Vintage Vaults edit listing page, where you can edit your own listings."
     />
-    <title>Vintage Vault | Listing</title>
+    <title>Vintage Vault | Edit listing</title>
 
     <!-- Google Fonts - Source: https://fonts.google.com/specimen/Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,7 +17,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../styles/css/styles.css" />
+    <link rel="stylesheet" href="/styles/css/styles.css" />
   </head>
   <body>
     <!-- NAVBAR -->
@@ -128,103 +128,73 @@
     </header>
 
     <main class="container mt-5">
-      <section class="listing-single">
-        <article class="listing-card listing-single_card">
-          <div class="listing-single_media">
-            <button
-              type="button"
-              class="listing-single_nav listing-single_nav-prev"
-              id="image-prev"
-            >
-              ←
-            </button>
+      <section
+        class="edit-listing col-12 col-md-8 col-lg-6 mx-auto shadow rounded-3 bg-white border-0 p-4"
+      >
+        <h1 class="h3 text-center mb-4">Edit listing</h1>
 
-            <div class="listing-single_image-wrapper">
-              <img
-                id="listing-image"
-                class="listing-single_image"
-                src=""
-                alt=""
-              />
-            </div>
-
-            <button
-              type="button"
-              class="listing-single_nav listing-single_nav-next"
-              id="image-next"
-            >
-              →
-            </button>
+        <form id="edit-listing-form" class="edit-form">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input
+              id="title"
+              name="title"
+              type="text"
+              class="form-control border"
+              required
+            />
           </div>
 
-          <div class="listing-card_body listing-single_body">
-            <h1 id="listing-title" class="listing-card_title"></h1>
-
-            <p
-              id="listing-description"
-              class="listing-card_description listing-single_description"
-            ></p>
-
-            <p id="listing-tags" class="listing-single_meta"></p>
-            <p
-              id="listing-ends"
-              class="listing-card_ends listing-single_meta"
-            ></p>
-            <p id="listing-seller" class="listing-single_meta"></p>
-
-            <div class="listing-single_bid-box">
-              <h2 id="listing-bid-title" class="listing-single_subtitle">
-                Place a bid
-              </h2>
-
-              <div id="listing-bid-form" class="listing-card_bid-area">
-                <input
-                  id="listing-bid-input"
-                  type="number"
-                  min="1"
-                  placeholder="Your bid"
-                  class="listing-card_bid-input"
-                />
-                <button
-                  id="listing-bid-button"
-                  type="button"
-                  class="listing-card_bid-button"
-                >
-                  Bid
-                </button>
-              </div>
-
-              <p
-                id="listing-bid-message"
-                class="listing-card_expired-message"
-              ></p>
-            </div>
-
-            <div class="listing-single_bids">
-              <h2 class="listing-single_subtitle">Bid history</h2>
-              <ul id="listing-bids-list" class="listing-single_bids-list"></ul>
-            </div>
-
-            <div class="d-flex flex-wrap gap-2 mt-3">
-              <button
-                id="listing-edit-button"
-                type="button"
-                class="btn btn-dark flex-fill is-hidden"
-              >
-                Edit
-              </button>
-
-              <button
-                id="listing-delete-button"
-                type="button"
-                class="btn btn-danger flex-fill is-hidden"
-              >
-                Delete
-              </button>
-            </div>
-            <p id="listing-delete-message" class="form-message"></p>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              class="form-control border"
+              rows="4"
+            ></textarea>
           </div>
-        </article>
+
+          <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+            <input
+              id="tags"
+              name="tags"
+              type="text"
+              class="form-control border"
+              placeholder="vintage, chair, home"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="image-url" class="form-label">Image URLs</label>
+            <input
+              id="image-url"
+              name="image-url"
+              type="text"
+              class="form-control border"
+            />
+          </div>
+
+          <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
+            <button
+              id="listing-update-button"
+              type="submit"
+              class="btn btn-dark flex-fill"
+            >
+              Update
+            </button>
+
+            <button
+              id="listing-delete-button"
+              type="button"
+              class="btn btn-danger flex-fill"
+            >
+              Delete
+            </button>
+          </div>
+          <p id="edit-listing-message" class="form-message"></p>
+        </form>
       </section>
     </main>
 
@@ -233,6 +203,6 @@
     </div>
 
     <script type="module" src="/components/navbar.js"></script>
-    <script type="module" src="listingSingle.js"></script>
+    <script type="module" src="/listings/editListing.js"></script>
   </body>
 </html>

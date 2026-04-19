@@ -28,3 +28,19 @@
   text-align: center;
   margin-bottom: 2rem;
 }
+
+/* Form message styling */
+.form-message {
+  min-height: 1.5rem;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.form-message--error {
+  color: #dc3545;
+}
+
+.form-message--success {
+  color: #198754;
+}
