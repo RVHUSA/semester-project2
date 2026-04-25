@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="This is a created listing with all details published on Vintage Vault"
+      content="This is a profile on Vintage Vaults, where you can view username, avatar, banner and credits."
     />
-    <title>Vintage Vault | Listing</title>
+    <title>Vintage Vault | Profile</title>
 
     <!-- Google Fonts - Source: https://fonts.google.com/specimen/Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,7 +17,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../styles/css/styles.css" />
+    <link rel="stylesheet" href="/styles/css/styles.css" />
   </head>
   <body>
     <!-- NAVBAR -->
@@ -127,108 +127,60 @@
       </nav>
     </header>
 
-    <main class="container mt-5">
-      <section class="listing-single">
-        <article class="listing-card listing-single_card">
-          <div class="listing-single_media">
-            <button
-              type="button"
-              class="listing-single_nav listing-single_nav-prev"
-              id="image-prev"
-            >
-              ←
-            </button>
+    <main class="container my-5">
+      <section class="profile-card mb-5">
+        <img id="profile-banner" class="profile-banner" src="" alt="" />
 
-            <div class="listing-single_image-wrapper">
-              <img
-                id="listing-image"
-                class="listing-single_image"
-                src=""
-                alt=""
-              />
+        <div class="profile-info-card">
+          <div class="profile-info-left">
+            <img id="profile-avatar" class="profile-avatar" src="" alt="" />
+
+            <div>
+              <h1 id="profile-name" class="h3 mb-2"></h1>
+              <p id="profile-bio" class="mb-0"></p>
             </div>
-
-            <button
-              type="button"
-              class="listing-single_nav listing-single_nav-next"
-              id="image-next"
-            >
-              →
-            </button>
           </div>
 
-          <div class="listing-card_body listing-single_body">
-            <h1 id="listing-title" class="listing-card_title"></h1>
+          <div class="profile-info-right">
+            <p id="profile-credits" class="mb-0"></p>
 
-            <p
-              id="listing-description"
-              class="listing-card_description listing-single_description"
-            ></p>
-
-            <p id="listing-tags" class="listing-single_meta"></p>
-            <p
-              id="listing-ends"
-              class="listing-card_ends listing-single_meta"
-            ></p>
-            <p class="listing-single_meta">
-              Seller:
-              <a id="listing-seller" href="#" class="listing-seller-link"></a>
-            </p>
-
-            <div class="listing-single_bid-box">
-              <h2 id="listing-bid-title" class="listing-single_subtitle">
-                Place a bid
-              </h2>
-
-              <div id="listing-bid-form" class="listing-card_bid-area">
-                <input
-                  id="listing-bid-input"
-                  type="number"
-                  min="1"
-                  placeholder="Your bid"
-                  class="listing-card_bid-input"
-                />
-                <button
-                  id="listing-bid-button"
-                  type="button"
-                  class="listing-card_bid-button"
-                >
-                  Bid
-                </button>
-              </div>
-
-              <p
-                id="listing-bid-message"
-                class="listing-card_expired-message"
-              ></p>
-            </div>
-
-            <div class="listing-single_bids">
-              <h2 class="listing-single_subtitle">Bid history</h2>
-              <ul id="listing-bids-list" class="listing-single_bids-list"></ul>
-            </div>
-
-            <div class="d-flex flex-wrap gap-2 mt-3">
-              <button
-                id="listing-edit-button"
-                type="button"
-                class="btn btn-dark flex-fill is-hidden"
-              >
-                Edit
-              </button>
-
-              <button
-                id="listing-delete-button"
-                type="button"
-                class="btn btn-danger flex-fill is-hidden"
-              >
-                Delete
-              </button>
-            </div>
-            <p id="listing-delete-message" class="form-message"></p>
+            <a
+              href="/profile/editProfile.html"
+              id="edit-profile-button"
+              class="btn btn-dark btn-sm mt-3"
+            >
+              Edit profile
+            </a>
           </div>
-        </article>
+        </div>
       </section>
+
+      <section class="profile-section-card mb-5">
+        <h2 class="h4 mb-4">My listings</h2>
+        <div id="profile-listings" class="row g-4"></div>
+      </section>
+
+      <section class="profile-section-card">
+        <h2 class="h4 mb-4">My bids</h2>
+        <div id="profile-bids" class="row g-4"></div>
+      </section>
+
+      <template id="profile-listing-template">
+        <div class="col-12 col-sm-6 col-md-4">
+          <article class="listing-card h-100">
+            <img class="listing-card_image" src="" alt="" />
+
+            <div class="listing-card_body">
+              <h2 class="listing-card_title"></h2>
+              <p class="listing-card_description"></p>
+              <p class="listing-card_ends"></p>
+              <a class="listing-card_details-link">
+                <span>More details →</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </template>
     </main>
 
     <div id="spinner" class="spinner-overlay hidden">
@@ -236,6 +188,6 @@
     </div>
 
     <script type="module" src="/components/navbar.js"></script>
-    <script type="module" src="listingSingle.js"></script>
+    <script type="module" src="/profile/profile.js"></script>
   </body>
 </html>

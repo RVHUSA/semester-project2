@@ -190,7 +190,13 @@ function displayListing(listing) {
 
   // Display end date and seller
   ends.textContent = `Ends at: ${new Date(listing.endsAt).toLocaleString()}`;
-  seller.textContent = `Seller: ${listing.seller?.name || "Unknown"}`;
+  const sellerName = listing.seller?.name || "Unknown";
+
+  seller.textContent = sellerName;
+
+  if (listing.seller?.name) {
+    seller.href = `/profile/profile.html?name=${listing.seller.name}`;
+  }
 
   // Show owner actions
   if (editButton && deleteButton) {

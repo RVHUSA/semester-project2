@@ -72,6 +72,15 @@
   margin: 0;
 }
 
+.listing-seller-link {
+  color: #555;
+  text-decoration: none;
+}
+
+.listing-seller-link:hover {
+  color: $secondary;
+}
+
 /* Bidding section */
 .listing-single_bid-box,
 .listing-single_bids {

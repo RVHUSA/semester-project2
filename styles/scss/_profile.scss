@@ -1,0 +1,83 @@
+/* Profile layout */
+.profile-card {
+  position: relative;
+}
+
+.profile-banner {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  background-color: #e9e9e9;
+}
+
+/* Profile info card */
+.profile-info-card {
+  margin: -4rem auto 0;
+  position: relative;
+  background: #f2efe8;
+  border-radius: 0px 0px 12px 12px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Left side (avatar + text) */
+.profile-info-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Right side (credits + button) */
+.profile-info-right {
+  text-align: right;
+  min-width: 140px;
+}
+
+/* Profile sections (listings & bids) */
+.profile-section-card {
+  background: #f2efe8;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .profile-banner {
+    height: 180px;
+  }
+
+  .profile-info-card {
+    margin-top: -2.5rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-info-left {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-info-right {
+    text-align: center;
+  }
+
+  .profile-avatar {
+    width: 90px;
+    height: 90px;
+  }
+}
