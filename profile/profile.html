@@ -127,8 +127,8 @@
       </nav>
     </header>
 
-    <main class="container">
-      <section class="profile-card">
+    <main class="container my-5">
+      <section class="profile-card mb-5">
         <img id="profile-banner" class="profile-banner" src="" alt="" />
 
         <div class="profile-info-card">
@@ -136,44 +136,50 @@
             <img id="profile-avatar" class="profile-avatar" src="" alt="" />
 
             <div>
-              <h1 id="profile-name"></h1>
-              <p id="profile-bio"></p>
+              <h1 id="profile-name" class="h3 mb-2"></h1>
+              <p id="profile-bio" class="mb-0"></p>
             </div>
           </div>
 
           <div class="profile-info-right">
-            <p id="profile-credits"></p>
+            <p id="profile-credits" class="mb-0"></p>
 
-            <a href="/profile/editProfile.html" id="edit-profile-button">
+            <a
+              href="/profile/editProfile.html"
+              id="edit-profile-button"
+              class="btn btn-dark btn-sm mt-3"
+            >
               Edit profile
             </a>
           </div>
         </div>
       </section>
 
-      <section class="profile-section-card">
-        <h2>My listings</h2>
-        <div id="profile-listings"></div>
+      <section class="profile-section-card mb-5">
+        <h2 class="h4 mb-4">My listings</h2>
+        <div id="profile-listings" class="row g-4"></div>
       </section>
 
       <section class="profile-section-card">
-        <h2>My bids</h2>
-        <div id="profile-bids"></div>
+        <h2 class="h4 mb-4">My bids</h2>
+        <div id="profile-bids" class="row g-4"></div>
       </section>
 
       <template id="profile-listing-template">
-        <article class="listing-card">
-          <img class="listing-card_image" src="" alt="" />
+        <div class="col-12 col-sm-6 col-md-4">
+          <article class="listing-card h-100">
+            <img class="listing-card_image" src="" alt="" />
 
-          <div class="listing-card_body">
-            <h2 class="listing-card_title"></h2>
-            <p class="listing-card_description"></p>
-            <p class="listing-card_ends"></p>
-            <a class="listing-card_details-link">
-              <span>More details →</span>
-            </a>
-          </div>
-        </article>
+            <div class="listing-card_body">
+              <h2 class="listing-card_title"></h2>
+              <p class="listing-card_description"></p>
+              <p class="listing-card_ends"></p>
+              <a class="listing-card_details-link">
+                <span>More details →</span>
+              </a>
+            </div>
+          </article>
+        </div>
       </template>
     </main>
 
