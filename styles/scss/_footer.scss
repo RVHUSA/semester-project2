@@ -1,0 +1,61 @@
+@use "variables" as *;
+
+/* Footer Layout */
+.site-footer {
+  background-color: $primary;
+}
+
+.footer-line {
+  height: 1px;
+  background-color: #e0e0e0;
+  width: 98%;
+  margin: 0 auto;
+}
+
+/* Left side (logo and bio) */
+.footer-logo {
+  max-width: 180px;
+}
+
+.footer-text {
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+/* Right side (nav links) */
+.footer-heading {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #6c757d;
+    font-size: 0.9rem;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
+
+/* Mobile style */
+@media (max-width: 768px) {
+  .footer-logo {
+    margin-bottom: 1rem;
+  }
+
+  .footer-heading {
+    margin-top: 1rem;
+  }
+}
