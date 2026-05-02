@@ -13,6 +13,13 @@ const tagSelect = document.getElementById("listing-tag");
 const statusSelect = document.getElementById("listing-status");
 const createListingButton = document.getElementById("create-listing-button");
 
+// Load more button
+const loadMoreButton = document.getElementById("load-more-button");
+
+// Page and number of listings per load)
+let currentPage = 1;
+const limit = 9;
+
 // Show create listing button only for logged-in users
 const token = getToken();
 
@@ -32,11 +39,14 @@ async function fetchListings() {
 
   let url = "";
 
+  // Find which listings to load
+  const offset = (currentPage - 1) * limit;
+
   // Use search endpoint when search input has a value
   if (searchValue) {
     url = `${apiBaseUrl}/auction/listings/search?q=${encodeURIComponent(
       searchValue
-    )}`;
+    )}&limit=${limit}&offset=${offset}`;
 
     if (statusValue === "true") {
       url += `&_active=true`;
@@ -49,7 +59,7 @@ async function fetchListings() {
     url += `&_bids=true&_seller=true`;
   } else {
     // Use normal listings endpoint when only filters are used
-    url = `${apiBaseUrl}/auction/listings?_bids=true&_seller=true`;
+    url = `${apiBaseUrl}/auction/listings?_bids=true&_seller=true&limit=${limit}&offset=${offset}`;
 
     if (statusValue === "true") {
       url += `&_active=true`;
@@ -66,6 +76,13 @@ async function fetchListings() {
 
     // Send data to render function
     renderListings(result.data || []);
+
+    // Hide button if no more listings
+    if (!result.data?.length || result.data.length < limit) {
+      loadMoreButton?.classList.add("is-hidden");
+    } else {
+      loadMoreButton?.classList.remove("is-hidden");
+    }
   } catch (error) {
     console.error("Error fetching listings:", error);
     listingsContainer.innerHTML = "<p>Could not load listings.</p>";
@@ -76,11 +93,13 @@ async function fetchListings() {
 
 // Render all listings to the page
 function renderListings(listings) {
-  // Clear previous listings
-  listingsContainer.innerHTML = "";
+  // Only clear listings when loading first page
+  if (currentPage === 1) {
+    listingsContainer.innerHTML = "";
+  }
 
   // Show a message if no listings are found
-  if (!listings.length) {
+  if (!listings.length && currentPage === 1) {
     listingsContainer.innerHTML = "<p>No listings found.</p>";
     return;
   }
@@ -92,12 +111,26 @@ function renderListings(listings) {
   });
 }
 
+// Reset page when search/filter changes
+function resetAndFetchListings() {
+  currentPage = 1;
+  fetchListings();
+}
+
 // Run search while typing
-searchInput.addEventListener("input", fetchListings);
+searchInput.addEventListener("input", resetAndFetchListings);
 
 // Run filters when dropdown values change
-tagSelect.addEventListener("change", fetchListings);
-statusSelect.addEventListener("change", fetchListings);
+tagSelect.addEventListener("change", resetAndFetchListings);
+statusSelect.addEventListener("change", resetAndFetchListings);
+
+// Load next page
+if (loadMoreButton) {
+  loadMoreButton.addEventListener("click", () => {
+    currentPage++;
+    fetchListings();
+  });
+}
 
 // Initial load
 fetchListings();

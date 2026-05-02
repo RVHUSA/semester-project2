@@ -40,3 +40,15 @@
   align-self: stretch;
   padding: 0.65rem 1rem;
 }
+
+/* Create listing button */
+.btn-create-listing {
+  background-color: #9b3c33;
+  color: #fff;
+  border: none;
+
+  &:hover {
+    background-color: lighten(#9b3c33, 10%);
+    color: #fff;
+  }
+}
