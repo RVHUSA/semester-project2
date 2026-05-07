@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="This is Vintage Vaults listing page, where all the listings are displayed"
+    />
+    <title>Vintage Vault | Home</title>
+
+    <!-- Google Fonts - Source: https://fonts.google.com/specimen/Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/styles/css/styles.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="site-header">
+      <nav class="navbar-custom">
+        <div class="container">
+          <!-- Top row in the navbar (logo, usersummary, auth)-->
+          <div class="nav-top">
+            <a href="/index.html" class="nav-logo-link">
+              <img
+                src="/assets/images/vv-logo.png"
+                alt="Vintage Vault logo"
+                class="site-logo"
+              />
+            </a>
+
+            <!-- Desktop auth (user is logged-in) -->
+            <div class="nav-user-area" id="desktop-auth-area">
+              <a
+                href="/profile/profile.html"
+                class="nav-user-link"
+                id="desktop-username"
+              ></a>
+              <a
+                href="/profile/profile.html"
+                class="nav-user-link"
+                id="desktop-credits"
+              ></a>
+              <button type="button" class="logout-btn" id="logout-btn">
+                Log out
+              </button>
+            </div>
+
+            <!-- Desktop guest -->
+            <div class="nav-guest-area" id="desktop-guest-area">
+              <a href="/auth/login.html" class="nav-user-link">Login</a>
+            </div>
+
+            <!-- Mobile toggle -->
+            <button
+              class="navbar-toggler"
+              id="menu-toggle"
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+
+          <!-- Mobile user summary (username and credits) -->
+          <div class="mobile-user-summary" id="mobile-user-summary">
+            <a
+              href="/profile/profile.html"
+              class="nav-user-link"
+              id="mobile-username"
+            ></a>
+            <a
+              href="/profile/profile.html"
+              class="nav-user-link"
+              id="mobile-credits"
+            ></a>
+          </div>
+
+          <!-- Desktop nav (links) -->
+          <div class="nav-menu-desktop">
+            <div class="nav-links-wrapper">
+              <ul class="nav-links">
+                <li><a href="listings.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="#" class="nav-link">About</a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Mobile nav (links) -->
+          <div class="nav-menu-mobile" id="mobile-menu">
+            <div class="mobile-links-wrapper">
+              <ul class="nav-links-mobile">
+                <li><a href="listings.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="#" class="nav-link">About</a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link">Contact</a>
+                </li>
+              </ul>
+
+              <!-- Mobile auth (user is logged-in) -->
+              <div class="mobile-menu-actions" id="mobile-auth-area">
+                <button type="button" class="logout-btn" id="mobile-logout-btn">
+                  Log out
+                </button>
+              </div>
+
+              <!-- Mobile guest -->
+              <div class="mobile-menu-actions" id="mobile-guest-area">
+                <a href="/auth/login.html" class="nav-user-link">Login</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mt-4">
+      <div class="mb-3">
+        <a
+          id="create-listing-button"
+          href="/listings/createListing.html"
+          class="btn btn-create-listing is-hidden rounded w-100"
+        >
+          Create listing
+        </a>
+      </div>
+
+      <!-- Search bar -->
+      <section class="row g-3 mb-4 listings-controls">
+        <div class="col-12 col-md-6">
+          <input
+            type="search"
+            id="listing-search"
+            class="form-control listings-controls_input"
+            placeholder="Search listings..."
+          />
+        </div>
+
+        <!-- Filtering -->
+        <div class="col-6 col-md-3">
+          <select id="listing-tag" class="form-select listings-controls_select">
+            <option value="">All categories</option>
+            <option value="vintage">Vintage</option>
+            <option value="furniture">Furniture</option>
+            <option value="fashion">Fashion</option>
+          </select>
+        </div>
+
+        <!-- Show all or active listings -->
+        <div class="col-6 col-md-3">
+          <select
+            id="listing-status"
+            class="form-select listings-controls_select"
+          >
+            <option value="">All listings</option>
+            <option value="true">Active listings</option>
+          </select>
+        </div>
+      </section>
+
+      <div id="listings-container" class="row g-4"></div>
+
+      <template id="listing-card-template">
+        <div class="listing-card-wrapper col-12 col-sm-6 col-md-4">
+          <article class="listing-card h-100">
+            <img class="listing-card_image" src="" alt="" />
+
+            <div class="listing-card_body">
+              <h2 class="listing-card_title"></h2>
+              <p class="listing-card_description"></p>
+              <p class="listing-card_bids"></p>
+              <p class="listing-card_ends"></p>
+              <a href="#" class="listing-card_details-link">
+                <span>More details →</span>
+              </a>
+              <div class="listing-card_bid-area">
+                <input
+                  type="number"
+                  min="1"
+                  placeholder="Your bid"
+                  class="listing-card_bid-input"
+                />
+                <button type="button" class="btn listing-card_bid-button">
+                  Bid
+                </button>
+              </div>
+              <p class="listing-card_bid-message"></p>
+              <p class="listing-card_expired-message text-danger mt-3">
+                Bidding has ended.
+              </p>
+            </div>
+          </article>
+        </div>
+      </template>
+
+      <div class="text-center mt-4">
+        <button id="load-more-button" class="btn btn-outline-dark">
+          Load more
+        </button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer mt-5 pt-5">
+      <div class="container">
+        <div class="footer-line mb-5"></div>
+
+        <div class="row gy-4 ms-2">
+          <!-- Left side: Logo + bio -->
+          <div class="col-12 col-md-4">
+            <img
+              src="/assets/images/vv-logo.png"
+              alt="Vintage Vault logo"
+              class="footer-logo mb-3"
+            />
+            <p class="footer-text">
+              Where students bid, discover,<br />
+              and trade unique vintage treasures.
+            </p>
+          </div>
+
+          <!-- Right side: Nav links -->
+          <div class="col-12 col-md-8">
+            <div class="row">
+              <div class="col-12 col-sm-4">
+                <h3 class="footer-heading">Features</h3>
+                <ul class="footer-links">
+                  <li><a href="#">Core features</a></li>
+                  <li><a href="#">Pro experience</a></li>
+                  <li><a href="#">Auctions</a></li>
+                </ul>
+              </div>
+
+              <div class="col-12 col-sm-4">
+                <h3 class="footer-heading">Learn more</h3>
+                <ul class="footer-links">
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Student verification</a></li>
+                  <li><a href="#">How it works</a></li>
+                  <li><a href="listings.html">Listings</a></li>
+                  <li><a href="#">Bids</a></li>
+                </ul>
+              </div>
+
+              <div class="col-12 col-sm-4">
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                  <li><a href="#">Contact</a></li>
+                  <li><a href="#">Support</a></li>
+                  <li><a href="#">FAQ</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-center small mt-5 text-muted">© 2026 Vintage Vault</p>
+    </footer>
+
+    <div id="spinner" class="spinner-overlay hidden">
+      <div class="spinner"></div>
+    </div>
+
+    <script type="module" src="/components/navbar.js"></script>
+    <script type="module" src="listings.js"></script>
+  </body>
+</html>
