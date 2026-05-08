@@ -1,0 +1,80 @@
+@use "variables" as *;
+
+/* Headliner */
+.headliner-logo {
+  min-height: 70vh;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.headliner-vv-logo {
+  max-width: 800px;
+  width: 100%;
+}
+
+.headliner-text {
+  max-width: 500px;
+  margin: 0 auto;
+  color: #737373;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Frontpage section */
+main section h2 {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+main section p {
+  line-height: 1.7;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .headliner-logo {
+    min-height: 60vh;
+    padding: 3rem 1.5rem;
+  }
+
+  .headliner-vv-logo {
+    max-width: 320px;
+  }
+
+  .headliner-text {
+    max-width: 320px;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+  }
+
+  #auth-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 260px;
+    margin: 1.5rem auto 0;
+  }
+
+  #auth-buttons .btn {
+    width: 100%;
+  }
+
+  main section.container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  main section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  main section p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  main section img {
+    margin-top: 0.5rem;
+  }
+}
