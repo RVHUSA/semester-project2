@@ -2,8 +2,8 @@
 @use "mixins" as *;
 
 .btn-regular {
-  background: black;
-  color: white;
+  background: #000;
+  color: #fff;
   padding: 0.7rem 1.5rem;
   @include rounded;
   @include button-base;
@@ -16,9 +16,9 @@
 /* Listing bid button */
 .listing-card_bid-button {
   border: none;
-  border-left: 1px solid #d9d9d9;
+  border-left: 1px solid #dfdfdf;
   background: black;
-  color: white;
+  color: #fff;
   padding: 0 1rem;
   height: 100%;
   display: flex;
@@ -30,8 +30,8 @@
 }
 
 .listing-card_bid-button:hover {
-  background: #5c5c5c;
-  color: white;
+  background: #606060;
+  color: #fff;
 }
 
 /* Single listing bid button */
