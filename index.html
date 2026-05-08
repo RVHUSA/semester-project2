@@ -14,24 +14,16 @@
       rel="stylesheet"
     />
 
+    <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
     <link rel="stylesheet" href="/styles/css/styles.css" />
   </head>
   <body>
-    <!-- NAVBAR -->
+    <!-- NAVBAR 1 (Menu toggle and user auth summary) -->
     <header class="site-header">
       <nav class="navbar-custom">
         <div class="container">
-          <!-- Top row in the navbar (logo, usersummary, auth)-->
           <div class="nav-top">
-            <a href="/index.html" class="nav-logo-link">
-              <img
-                src="/assets/images/vv-logo.png"
-                alt="Vintage Vault logo"
-                class="site-logo"
-              />
-            </a>
-
-            <!-- Desktop auth (user is logged-in) -->
+            <!-- Desktop (username and credits) + logout -->
             <div class="nav-user-area" id="desktop-auth-area">
               <a
                 href="/profile/profile.html"
@@ -48,11 +40,6 @@
               </button>
             </div>
 
-            <!-- Desktop guest -->
-            <div class="nav-guest-area" id="desktop-guest-area">
-              <a href="/auth/login.html" class="nav-user-link">Login</a>
-            </div>
-
             <!-- Mobile toggle -->
             <button
               class="navbar-toggler"
@@ -65,7 +52,7 @@
             </button>
           </div>
 
-          <!-- Mobile user summary (username and credits) -->
+          <!-- Mobile (username and credits) -->
           <div class="mobile-user-summary" id="mobile-user-summary">
             <a
               href="/profile/profile.html"
@@ -79,11 +66,47 @@
             ></a>
           </div>
 
+          <!-- Headliner (logo, bio, auth buttons) -->
+          <section
+            class="headliner-logo d-flex align-items-center justify-content-center text-center py-5"
+          >
+            <div>
+              <img
+                src="/assets/images/vv-logo.png"
+                alt="Vintage Vault logo"
+                class="headliner-vv-logo mb-4"
+              />
+
+              <p class="headliner-text">
+                Where students bid, discover,<br />
+                and trade unique vintage treasures.
+              </p>
+
+              <div
+                id="auth-buttons"
+                class="d-flex justify-content-center gap-3 mt-4 flex-wrap"
+              >
+                <a href="/auth/register.html" class="btn btn-dark px-4">
+                  Register
+                </a>
+
+                <a href="/auth/login.html" class="btn btn-outline-dark px-4">
+                  Login
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- NAVBAR 2 -->
           <!-- Desktop nav (links) -->
           <div class="nav-menu-desktop">
             <div class="nav-links-wrapper">
               <ul class="nav-links">
-                <li><a href="/index.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="/listings/listings.html" class="nav-link"
+                    >Listings</a
+                  >
+                </li>
                 <li>
                   <a href="#" class="nav-link">About</a>
                 </li>
@@ -98,7 +121,11 @@
           <div class="nav-menu-mobile" id="mobile-menu">
             <div class="mobile-links-wrapper">
               <ul class="nav-links-mobile">
-                <li><a href="/index.html" class="nav-link">Listings</a></li>
+                <li>
+                  <a href="/listings/listings.html" class="nav-link"
+                    >Listings</a
+                  >
+                </li>
                 <li>
                   <a href="#" class="nav-link">About</a>
                 </li>
@@ -107,16 +134,11 @@
                 </li>
               </ul>
 
-              <!-- Mobile auth (user is logged-in) -->
+              <!-- Mobile auth (logout) -->
               <div class="mobile-menu-actions" id="mobile-auth-area">
                 <button type="button" class="logout-btn" id="mobile-logout-btn">
                   Log out
                 </button>
-              </div>
-
-              <!-- Mobile guest -->
-              <div class="mobile-menu-actions" id="mobile-guest-area">
-                <a href="/auth/login.html" class="nav-user-link">Login</a>
               </div>
             </div>
           </div>
@@ -124,90 +146,48 @@
       </nav>
     </header>
 
-    <main class="container mt-4">
-      <div class="mb-3">
-        <a
-          id="create-listing-button"
-          href="/listings/createListing.html"
-          class="btn btn-create-listing is-hidden rounded w-100"
-        >
-          Create listing
-        </a>
-      </div>
+    <main>
+      <section class="container my-5">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-md-6 pe-md-5">
+            <h2>Discover unique auctions</h2>
+            <p>
+              Explore a marketplace created for students, where you can discover
+              vintage treasures and unique items through auctions. Each listing
+              offers something different, making every visit exciting.
+            </p>
+          </div>
 
-      <!-- Search bar -->
-      <section class="row g-3 mb-4 listings-controls">
-        <div class="col-12 col-md-6">
-          <input
-            type="search"
-            id="listing-search"
-            class="form-control listings-controls_input"
-            placeholder="Search listings..."
-          />
-        </div>
-
-        <!-- Filtering -->
-        <div class="col-6 col-md-3">
-          <select id="listing-tag" class="form-select listings-controls_select">
-            <option value="">All categories</option>
-            <option value="vintage">Vintage</option>
-            <option value="furniture">Furniture</option>
-            <option value="fashion">Fashion</option>
-          </select>
-        </div>
-
-        <!-- Show all or active listings -->
-        <div class="col-6 col-md-3">
-          <select
-            id="listing-status"
-            class="form-select listings-controls_select"
-          >
-            <option value="">All listings</option>
-            <option value="true">Active listings</option>
-          </select>
+          <div class="col-12 col-md-6">
+            <img
+              src="/assets/images/vinyl.jpg"
+              alt="Man browsing through vinyl records"
+              class="img-fluid rounded"
+            />
+          </div>
         </div>
       </section>
 
-      <div id="listings-container" class="row g-4"></div>
+      <section class="container my-5">
+        <div class="row align-items-center g-5 flex-md-row-reverse">
+          <div class="col-12 col-md-6 pe-md-5">
+            <h2>Bid and sell with confidence</h2>
+            <p>
+              As a registered student, you can create your own listings and
+              place bids using virtual credits. The platform is designed to be
+              simple, secure, and engaging for all users.
+            </p>
+          </div>
 
-      <template id="listing-card-template">
-        <div class="listing-card-wrapper col-12 col-sm-6 col-md-4">
-          <article class="listing-card h-100">
-            <img class="listing-card_image" src="" alt="" />
-
-            <div class="listing-card_body">
-              <h2 class="listing-card_title"></h2>
-              <p class="listing-card_description"></p>
-              <p class="listing-card_bids"></p>
-              <p class="listing-card_ends"></p>
-              <a href="#" class="listing-card_details-link">
-                <span>More details →</span>
-              </a>
-              <div class="listing-card_bid-area">
-                <input
-                  type="number"
-                  min="1"
-                  placeholder="Your bid"
-                  class="listing-card_bid-input"
-                />
-                <button type="button" class="btn listing-card_bid-button">
-                  Bid
-                </button>
-              </div>
-              <p class="listing-card_bid-message"></p>
-              <p class="listing-card_expired-message text-danger mt-3">
-                Bidding has ended.
-              </p>
-            </div>
-          </article>
+          <div class="col-12 col-md-6">
+            <img
+              src="/assets/images/vintage.jpg"
+              alt="Several old things like brush, phone and pictures displayed on a table"
+              class="img-fluid rounded"
+            />
+          </div>
         </div>
-      </template>
-
-      <div class="text-center mt-4">
-        <button id="load-more-button" class="btn btn-outline-dark">
-          Load more
-        </button>
-      </div>
+      </section>
     </main>
 
     <!-- Footer -->
@@ -247,7 +227,7 @@
                   <li><a href="#">About</a></li>
                   <li><a href="#">Student verification</a></li>
                   <li><a href="#">How it works</a></li>
-                  <li><a href="#">Listings</a></li>
+                  <li><a href="listings/listings.html">Listings</a></li>
                   <li><a href="#">Bids</a></li>
                 </ul>
               </div>
@@ -267,11 +247,7 @@
       <p class="text-center small mt-5 text-muted">© 2026 Vintage Vault</p>
     </footer>
 
-    <div id="spinner" class="spinner-overlay hidden">
-      <div class="spinner"></div>
-    </div>
-
     <script type="module" src="/components/navbar.js"></script>
-    <script type="module" src="/listings/listings.js"></script>
+    <script type="module" src="/components/authUI.js"></script>
   </body>
 </html>
