@@ -137,7 +137,7 @@
     </header>
 
     <main class="container mt-5">
-      <section class="listing-single">
+      <div class="listing-single">
         <article class="listing-card listing-single_card">
           <div class="listing-single_media">
             <button
@@ -152,8 +152,8 @@
               <img
                 id="listing-image"
                 class="listing-single_image"
-                src=""
                 alt=""
+                src="https://placehold.co/600x400"
               />
             </div>
 
@@ -167,17 +167,19 @@
           </div>
 
           <div class="listing-card_body listing-single_body">
-            <h1 id="listing-title" class="listing-card_title"></h1>
+            <h1 id="listing-title" class="listing-card_title">
+              Loading listing...
+            </h1>
 
             <p
               id="listing-description"
               class="listing-card_description listing-single_description"
             ></p>
 
-            <p id="listing-tags" class="listing-single_meta"></p>
+            <p id="listing-tags" class="listing-single_meta mt-2"></p>
             <p
               id="listing-ends"
-              class="listing-card_ends listing-single_meta"
+              class="listing-card_ends listing-single_meta mt-3"
             ></p>
             <p class="listing-single_meta">
               Seller:
@@ -238,7 +240,7 @@
             <p id="listing-delete-message" class="form-message"></p>
           </div>
         </article>
-      </section>
+      </div>
     </main>
 
     <!-- Footer -->
@@ -264,7 +266,7 @@
           <div class="col-12 col-md-8">
             <div class="row">
               <div class="col-12 col-sm-4">
-                <h3 class="footer-heading">Features</h3>
+                <h2 class="footer-heading h3">Features</h2>
                 <ul class="footer-links">
                   <li><a href="#">Core features</a></li>
                   <li><a href="#">Pro experience</a></li>
@@ -273,7 +275,7 @@
               </div>
 
               <div class="col-12 col-sm-4">
-                <h3 class="footer-heading">Learn more</h3>
+                <h2 class="footer-heading h3">Learn more</h2>
                 <ul class="footer-links">
                   <li><a href="#">About</a></li>
                   <li><a href="#">Student verification</a></li>
@@ -284,7 +286,7 @@
               </div>
 
               <div class="col-12 col-sm-4">
-                <h3 class="footer-heading">Support</h3>
+                <h2 class="footer-heading h3">Support</h2>
                 <ul class="footer-links">
                   <li><a href="#">Contact</a></li>
                   <li><a href="#">Support</a></li>
