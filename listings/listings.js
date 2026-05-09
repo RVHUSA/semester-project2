@@ -39,14 +39,11 @@ async function fetchListings() {
 
   let url = "";
 
-  // Find which listings to load
-  const offset = (currentPage - 1) * limit;
-
   // Use search endpoint when search input has a value
   if (searchValue) {
     url = `${apiBaseUrl}/auction/listings/search?q=${encodeURIComponent(
       searchValue
-    )}&limit=${limit}&offset=${offset}`;
+    )}&limit=${limit}&page=${currentPage}`;
 
     if (statusValue === "true") {
       url += `&_active=true`;
@@ -58,8 +55,7 @@ async function fetchListings() {
 
     url += `&_bids=true&_seller=true`;
   } else {
-    // Use normal listings endpoint when only filters are used
-    url = `${apiBaseUrl}/auction/listings?_bids=true&_seller=true&limit=${limit}&offset=${offset}`;
+    url = `${apiBaseUrl}/auction/listings?_bids=true&_seller=true&limit=${limit}&page=${currentPage}`;
 
     if (statusValue === "true") {
       url += `&_active=true`;
