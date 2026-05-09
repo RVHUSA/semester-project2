@@ -27,7 +27,7 @@
   text-decoration: none;
   color: #000;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 /* Desktop auth area */
@@ -95,13 +95,17 @@
   background: none;
   padding: 0;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 48px;
+  height: 48px;
 }
 
 .navbar-toggler span {
   display: block;
-  width: 25px;
-  height: 2px;
+  width: 30px;
+  height: 3px;
   background: $secondary;
 }
 
@@ -189,12 +193,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
-    padding-bottom: 0.75rem;
     margin-left: 0.4rem;
-  }
-
-  .mobile-user-summary .nav-user-link {
-    font-size: 0.85rem;
   }
 }
 

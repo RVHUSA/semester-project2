@@ -32,6 +32,15 @@ main section p {
   line-height: 1.7;
 }
 
+.front-page .nav-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.front-page .nav-menu-mobile.open {
+  margin-top: 0.75rem;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .headliner-logo {
