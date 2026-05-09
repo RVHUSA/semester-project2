@@ -46,7 +46,7 @@ Vintage Vault is a student-only auction web application where users can create l
 
 ## 🌍 Deployment and links
 
-- Deployed web application:
+- Deployed web application: https://sp1-vintage-vault.netlify.app/
 - Planning Board: https://github.com/users/RVHUSA/projects/8
 - Figma file design: https://www.figma.com/site/QKteMhLeDmQuDnZZ3fSNUV/Project-Exam-2---Vintage-Vault?node-id=0-1&t=tEf1rX7IQnGQsagY-1 
 
