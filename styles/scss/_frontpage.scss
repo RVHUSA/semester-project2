@@ -3,8 +3,6 @@
 /* Headliner */
 .headliner-logo {
   min-height: 70vh;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
 }
 
 .headliner-vv-logo {
@@ -45,7 +43,6 @@ main section p {
 @media (max-width: 768px) {
   .headliner-logo {
     min-height: 60vh;
-    padding: 3rem 1.5rem;
   }
 
   .headliner-vv-logo {
