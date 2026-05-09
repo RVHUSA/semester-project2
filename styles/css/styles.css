@@ -12175,7 +12175,7 @@ main section p {
 /* Mobile styles */
 @media (max-width: 768px) {
   .headliner-logo {
-    min-height: 60vh;
+    min-height: 50vh;
   }
   .headliner-vv-logo {
     max-width: 320px;
