@@ -15,6 +15,7 @@ const token = getToken();
 const profileName = document.getElementById("profile-name");
 const profileCredits = document.getElementById("profile-credits");
 const profileBio = document.getElementById("profile-bio");
+const profileEmail = document.getElementById("profile-email");
 const profileAvatar = document.getElementById("profile-avatar");
 const profileBanner = document.getElementById("profile-banner");
 
@@ -103,6 +104,7 @@ function displayProfile(profile) {
   if (!profile) return;
 
   profileName.textContent = profile.name || "";
+  profileEmail.textContent = profile.email || "";
   profileCredits.textContent = `Credits: ${profile.credits ?? 0}`;
   profileBio.textContent = profile.bio || "No bio added yet.";
 
