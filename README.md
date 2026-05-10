@@ -37,6 +37,8 @@ Vintage Vault is a student-only auction web application where users can create l
 - **Planning:** GitHub Projects 
 - **Hosting:** Netlify
 
+---
+
 ## 🎨 Design
 
 - Created in Figma
