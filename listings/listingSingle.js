@@ -146,15 +146,36 @@ function updateImage() {
 
 // Render list of bids
 function renderBids(bids) {
+  // Clear previous bids before rendering new ones
   bidsList.innerHTML = "";
 
   // If there are bids - create list of items
   if (bids?.length) {
-    bids.forEach((bid) => {
-      const li = document.createElement("li");
+    // Sort bids by newest first
+    const sortedBids = [...bids].sort(
+      (a, b) => new Date(b.created) - new Date(a.created)
+    );
 
-      // Show bidder and bid amount
-      li.textContent = `${bid.bidder.name}: ${bid.amount} credits`;
+    sortedBids.forEach((bid) => {
+      // Create list item
+      const li = document.createElement("li");
+      li.classList.add("listing-bid-item");
+
+      // Create and fill bid info
+      const bidInfo = document.createElement("span");
+      bidInfo.classList.add("listing-bid-info");
+      bidInfo.textContent = `${bid.bidder.name}: ${bid.amount} credits`;
+
+      // Create bid time
+      const bidTime = document.createElement("span");
+      bidTime.classList.add("listing-bid-time");
+      bidTime.textContent = new Date(bid.created).toLocaleString();
+
+      // Add bid info and time to list item
+      li.appendChild(bidInfo);
+      li.appendChild(bidTime);
+
+      // Add list item to bids list
       bidsList.appendChild(li);
     });
   } else {

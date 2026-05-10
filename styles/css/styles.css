@@ -12358,9 +12358,6 @@ main.container {
 }
 
 .listing-single_description {
-  min-height: unset;
-  display: block;
-  overflow: visible;
   color: #737373;
 }
 
@@ -12391,12 +12388,27 @@ main.container {
 }
 
 .listing-single_bids-list {
-  padding-left: 1.25rem;
+  list-style: none;
+  padding-left: 0;
   margin: 0;
 }
 
 .listing-single_bids-list li {
   margin-bottom: 0.5rem;
+}
+
+.listing-bid-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.listing-bid-time {
+  font-size: 0.75rem;
+  color: #737373;
 }
 
 /* Message below bid input (errors/success) */
