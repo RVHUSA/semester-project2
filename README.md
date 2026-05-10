@@ -14,9 +14,11 @@ Vintage Vault is a student-only auction web application where users can create l
 - Create, update, and delete listings
 - Place bids on other users' listings
 - View bid history on listings
+- View other profiles (on single listings seller link)
 - View:
   - Listings they created
   - Listings they have bid on
+  - Listings they have won
 
 ### Visitors (Unregistered Users)
 - Browse listings
@@ -33,7 +35,7 @@ Vintage Vault is a student-only auction web application where users can create l
 - **API:** Noroff Auction House API (v2)  
 - **Design:** Figma  
 - **Planning:** GitHub Projects 
-- **Hosting:** Github pages
+- **Hosting:** Netlify
 
 ## 🎨 Design
 
