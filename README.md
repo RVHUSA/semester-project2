@@ -22,7 +22,7 @@ Vintage Vault is a student-only auction web application where users can create l
 - Browse listings
 - Search listings
 - View single listings
-- View other profiles
+- View other profiles (on single listings seller link)
 
 ---
 
