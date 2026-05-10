@@ -22,6 +22,7 @@ const profileBanner = document.getElementById("profile-banner");
 // Select listing containers
 const profileListingsContainer = document.getElementById("profile-listings");
 const profileBidsContainer = document.getElementById("profile-bids");
+const profileWinsContainer = document.getElementById("profile-wins");
 
 // Get template
 const template = document.getElementById("profile-listing-template");
@@ -90,6 +91,29 @@ async function fetchUserBids(name) {
     );
 
     if (!response.ok) throw new Error("Could not fetch bids");
+
+    const result = await response.json();
+    return result.data || [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+// Fetch listings the user has won
+async function fetchUserWins(name) {
+  try {
+    const response = await fetch(
+      `${apiBaseUrl}/auction/profiles/${name}/wins?_bids=true`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+      }
+    );
+
+    if (!response.ok) throw new Error("Could not fetch wins");
 
     const result = await response.json();
     return result.data || [];
@@ -189,15 +213,17 @@ function getUniqueBidListings(bids) {
 
   try {
     // Fetch all required data (profile, listings and bids) at the same time
-    const [profile, userListings, userBids] = await Promise.all([
+    const [profile, userListings, userBids, userWins] = await Promise.all([
       fetchProfileData(username),
       fetchUserListings(username),
       fetchUserBids(username),
+      fetchUserWins(username),
     ]);
 
-    // Display profile and render listings created by user
+    // Display profile and render listings created by user and won by user
     displayProfile(profile);
     renderListings(userListings, profileListingsContainer);
+    renderListings(userWins, profileWinsContainer);
 
     // Show listings from bids (without duplicates)
     const bidListings = getUniqueBidListings(userBids);
