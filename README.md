@@ -1,7 +1,7 @@
 # Semester Project 2 - Vintage Vault
 
 ## 📖 Description
-Vintage Vault is a student-only auction web application where users can create listings, place bids, and manage their profiles using virtual credits. Visitors can browse and search listings, while full participation requires registration with a `@stud.noroff.no` email.
+Vintage Vault is a student-only auction web application where users can create listings, place bids, and manage their profiles using virtual credits. Visitors can browse and search listings, while full participation requires registration with a @stud.noroff.no email. I chose the name Vintage Vault because “vintage” represents old and unique items, while “vault” gives the feeling of a place where treasures and valuable things are stored. The design is inspired by warm vintage colors to create a simple and nostalgic atmosphere.
 
 ---
 
@@ -14,15 +14,17 @@ Vintage Vault is a student-only auction web application where users can create l
 - Create, update, and delete listings
 - Place bids on other users' listings
 - View bid history on listings
+- View other profiles (on single listings seller link)
 - View:
   - Listings they created
   - Listings they have bid on
+  - Listings they have won
 
 ### Visitors (Unregistered Users)
 - Browse listings
 - Search listings
 - View single listings
-- View other profiles
+- View other profiles (on single listings seller link)
 
 ---
 
@@ -33,7 +35,9 @@ Vintage Vault is a student-only auction web application where users can create l
 - **API:** Noroff Auction House API (v2)  
 - **Design:** Figma  
 - **Planning:** GitHub Projects 
-- **Hosting:** Github pages
+- **Hosting:** Netlify
+
+---
 
 ## 🎨 Design
 
@@ -48,7 +52,31 @@ Vintage Vault is a student-only auction web application where users can create l
 
 - Deployed web application: https://sp1-vintage-vault.netlify.app
 - Planning Board: https://github.com/users/RVHUSA/projects/8
-- Figma file design: https://www.figma.com/site/QKteMhLeDmQuDnZZ3fSNUV/Project-Exam-2---Vintage-Vault?node-id=0-1&t=tEf1rX7IQnGQsagY-1 
+- Figma file design: https://www.figma.com/site/QKteMhLeDmQuDnZZ3fSNUV/Project-Exam-2---Vintage-Vault?node-id=0-1&t=tEf1rX7IQnGQsagY-1
+
+---
+
+## ⚙️ How to run the project locally
+
+To run this project on your own computer:
+
+1. Go to the GitHub repository:  
+   **[https://github.com/RVHUSA/javascript2-course-assigment.git](https://github.com/RVHUSA/semester-project2)**
+
+2. Click on the green **Code** button and copy the HTTPS link.  
+   It should look like this:  
+   `https://github.com/RVHUSA/semester-project2.git`
+
+3. Open your terminal and run the following commands:
+
+```
+   cd semester-project2
+   npm install
+   npm run dev
+```
+   
+4. When the development server starts, open the local URL shown in your terminal (for example `http://localhost:5050`) in your browser.
+
 
 
 
