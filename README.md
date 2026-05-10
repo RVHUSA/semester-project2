@@ -73,7 +73,6 @@ To run this project on your own computer:
    
 4. When the development server starts, open the local URL shown in your terminal (for example `http://localhost:5050`) in your browser.
 
----
 
 
 
