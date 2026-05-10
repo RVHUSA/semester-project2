@@ -1,7 +1,7 @@
 # Semester Project 2 - Vintage Vault
 
 ## 📖 Description
-Vintage Vault is a student-only auction web application where users can create listings, place bids, and manage their profiles using virtual credits. Visitors can browse and search listings, while full participation requires registration with a `@stud.noroff.no` email.
+Vintage Vault is a student-only auction web application where users can create listings, place bids, and manage their profiles using virtual credits. Visitors can browse and search listings, while full participation requires registration with a @stud.noroff.no email. I chose the name Vintage Vault because “vintage” represents old and unique items, while “vault” gives the feeling of a place where treasures and valuable things are stored. The design is inspired by warm vintage colors to create a simple and nostalgic atmosphere.
 
 ---
 
