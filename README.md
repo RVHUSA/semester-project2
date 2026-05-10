@@ -48,7 +48,32 @@ Vintage Vault is a student-only auction web application where users can create l
 
 - Deployed web application: https://sp1-vintage-vault.netlify.app
 - Planning Board: https://github.com/users/RVHUSA/projects/8
-- Figma file design: https://www.figma.com/site/QKteMhLeDmQuDnZZ3fSNUV/Project-Exam-2---Vintage-Vault?node-id=0-1&t=tEf1rX7IQnGQsagY-1 
+- Figma file design: https://www.figma.com/site/QKteMhLeDmQuDnZZ3fSNUV/Project-Exam-2---Vintage-Vault?node-id=0-1&t=tEf1rX7IQnGQsagY-1
+
+---
+
+## ⚙️ How to run the project locally
+
+To run this project on your own computer:
+
+1. Go to the GitHub repository:  
+   **[https://github.com/RVHUSA/javascript2-course-assigment.git](https://github.com/RVHUSA/semester-project2)**
+
+2. Click on the green **Code** button and copy the HTTPS link.  
+   It should look like this:  
+   `https://github.com/RVHUSA/semester-project2.git`
+
+3. Open your terminal and run the following commands:
+
+```
+   cd semester-project2
+   npm install
+   npm run dev
+```
+   
+4. When the development server starts, open the local URL shown in your terminal (for example `http://localhost:5050`) in your browser.
+
+---
 
 
 
